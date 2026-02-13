@@ -113,7 +113,7 @@ export default function Pricing() {
                 </div>
 
                 <Button asChild className={`w-full rounded-full gap-2 group ${pkg.popular ? "" : "variant-outline bg-secondary/50 border border-border/50 text-foreground hover:bg-secondary"}`}>
-                  <Link to="/contact">
+                  <Link to={`/contact?package=${encodeURIComponent(pkg.title)}&price=${encodeURIComponent(pkg.price)}`}>
                     Get a Quote
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Link>

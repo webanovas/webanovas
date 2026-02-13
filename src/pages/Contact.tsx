@@ -51,8 +51,8 @@ export default function Contact() {
           }}
         >
           {quizPackage && (
-            <div className="mb-6 p-4 rounded-xl border border-primary/30 bg-primary/5">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-primary font-body block mb-1">Your Quiz Result</span>
+            <div className="p-4 rounded-xl border border-primary/30 bg-primary/5">
+              <span className="text-[10px] uppercase tracking-[0.2em] text-primary font-body block mb-1">Selected Package</span>
               <span className="font-display font-semibold text-foreground">{quizPackage}</span>
               <span className="text-gradient font-display font-bold ml-2">{quizPrice}</span>
             </div>
