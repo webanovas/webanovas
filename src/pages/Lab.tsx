@@ -76,7 +76,7 @@ function MagneticButton() {
   const springX = useSpring(x, { stiffness: 300, damping: 20 });
   const springY = useSpring(y, { stiffness: 300, damping: 20 });
 
-  const handleMouse = (e: React.MouseEvent) => {
+  const handlePointer = (e: React.PointerEvent) => {
     const rect = ref.current?.getBoundingClientRect();
     if (!rect) return;
     const cx = e.clientX - rect.left - rect.width / 2;
@@ -96,14 +96,19 @@ function MagneticButton() {
         <MousePointerClick className="w-5 h-5 text-primary" />
         <h3 className="text-lg font-semibold">Magnetic Button</h3>
       </div>
-      <p className="text-muted-foreground text-sm mb-6">Hover over the button — it follows your cursor.</p>
-      <div className="flex-1 flex items-center justify-center" ref={ref} onMouseMove={handleMouse} onMouseLeave={handleLeave}>
+      <p className="text-muted-foreground text-sm mb-6">Hover or drag your finger over the button — it follows you.</p>
+      <div
+        className="flex-1 flex items-center justify-center min-h-[120px]"
+        ref={ref}
+        onPointerMove={handlePointer}
+        onPointerLeave={handleLeave}
+      >
         <motion.button
           style={{ x: springX, y: springY }}
           className="px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold text-sm shadow-lg shadow-primary/25"
           whileTap={{ scale: 0.95 }}
         >
-          Hover me
+          Try me
         </motion.button>
       </div>
     </div>
@@ -174,7 +179,7 @@ function TiltCard() {
   const springRX = useSpring(rotateX, { stiffness: 300, damping: 30 });
   const springRY = useSpring(rotateY, { stiffness: 300, damping: 30 });
 
-  const handleMouse = (e: React.MouseEvent) => {
+  const handlePointer = (e: React.PointerEvent) => {
     const rect = ref.current?.getBoundingClientRect();
     if (!rect) return;
     const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -194,14 +199,14 @@ function TiltCard() {
         <Eye className="w-5 h-5 text-primary" />
         <h3 className="text-lg font-semibold">3D Tilt Card</h3>
       </div>
-      <p className="text-muted-foreground text-sm mb-6">Move your mouse over the card to see a 3D perspective effect.</p>
-      <div className="flex-1 flex items-center justify-center" style={{ perspective: 600 }}>
+      <p className="text-muted-foreground text-sm mb-6">Move your finger or mouse over the card for a 3D effect.</p>
+      <div className="flex-1 flex items-center justify-center min-h-[120px]" style={{ perspective: 600 }}>
         <motion.div
           ref={ref}
-          onMouseMove={handleMouse}
-          onMouseLeave={handleLeave}
+          onPointerMove={handlePointer}
+          onPointerLeave={handleLeave}
           style={{ rotateX: springRX, rotateY: springRY }}
-          className="w-48 h-32 rounded-xl bg-gradient-to-br from-primary/30 to-primary/5 border border-primary/20 flex items-center justify-center shadow-xl shadow-primary/10 cursor-pointer"
+          className="w-48 h-32 rounded-xl bg-gradient-to-br from-primary/30 to-primary/5 border border-primary/20 flex items-center justify-center shadow-xl shadow-primary/10 cursor-pointer touch-none"
         >
           <span className="text-sm font-semibold text-primary">Tilt me</span>
         </motion.div>
@@ -215,7 +220,7 @@ function ParticleTrail() {
   const containerRef = useRef<HTMLDivElement>(null);
   const idRef = useRef(0);
 
-  const handleMouse = (e: React.MouseEvent) => {
+  const handlePointer = (e: React.PointerEvent) => {
     const rect = containerRef.current?.getBoundingClientRect();
     if (!rect) return;
     const x = e.clientX - rect.left;
@@ -237,11 +242,11 @@ function ParticleTrail() {
         <Zap className="w-5 h-5 text-primary" />
         <h3 className="text-lg font-semibold">Particle Trail</h3>
       </div>
-      <p className="text-muted-foreground text-sm mb-6">Move your mouse inside this box to leave a glowing trail.</p>
+      <p className="text-muted-foreground text-sm mb-6">Drag your finger or mouse to leave a glowing trail.</p>
       <div
         ref={containerRef}
-        onMouseMove={handleMouse}
-        className="flex-1 min-h-[160px] rounded-xl bg-secondary/30 border border-border/50 relative overflow-hidden cursor-crosshair"
+        onPointerMove={handlePointer}
+        className="flex-1 min-h-[160px] rounded-xl bg-secondary/30 border border-border/50 relative overflow-hidden cursor-crosshair touch-none"
       >
         {particles.map((p) => (
           <motion.div
