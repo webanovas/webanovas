@@ -11,6 +11,7 @@ const links = [
   { to: "/work", label: "Work" },
   { to: "/process", label: "Process" },
   { to: "/about", label: "About" },
+  { to: "/pricing", label: "Pricing" },
   { to: "/lab", label: "Lab" },
 ];
 
