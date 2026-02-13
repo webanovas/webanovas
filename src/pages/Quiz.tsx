@@ -7,40 +7,69 @@ import { Link } from "react-router-dom";
 
 const questions = [
   {
-    question: "כמה עמודים אתה צריך באתר?",
-    subtitle: "How many pages does your site need?",
+    question: "How many pages does your website need?",
     options: [
-      { label: "עמוד נחיתה בודד", subtitle: "Single landing page", score: 0 },
-      { label: "2–5 עמודים", subtitle: "2–5 pages", score: 1 },
-      { label: "6+ עמודים או אפליקציה", subtitle: "6+ pages or web app", score: 2 },
+      { label: "Just a single landing page", score: 0 },
+      { label: "2–5 pages (About, Services, Contact, etc.)", score: 1 },
+      { label: "6+ pages or a full web application", score: 2 },
     ],
   },
   {
-    question: "מה רמת העיצוב והאנימציות?",
-    subtitle: "What level of design & animations?",
+    question: "What level of design are you looking for?",
     options: [
-      { label: "נקי ופשוט", subtitle: "Clean & simple", score: 0 },
-      { label: "מותאם אישית עם אנימציות", subtitle: "Custom with animations", score: 1 },
-      { label: "עיצוב פרימיום עם אפקטים מתקדמים", subtitle: "Premium with advanced effects", score: 2 },
+      { label: "Clean and minimal — just get it done", score: 0 },
+      { label: "Custom design with branded look & feel", score: 1 },
+      { label: "Premium design with advanced animations & effects", score: 2 },
     ],
   },
   {
-    question: "האם צריך פונקציונליות Backend?",
-    subtitle: "Do you need backend functionality?",
+    question: "Do you need a content management system (CMS)?",
     options: [
-      { label: "לא, סטטי בלבד", subtitle: "No, static only", score: 0 },
-      { label: "טפסים ו-CMS בסיסי", subtitle: "Forms & basic CMS", score: 1 },
-      { label: "מערכת מלאה עם דאטאבייס ומשתמשים", subtitle: "Full system with DB & auth", score: 2 },
+      { label: "No — content will rarely change", score: 0 },
+      { label: "Basic CMS for blog posts or updates", score: 1 },
+      { label: "Full CMS with multiple content types", score: 2 },
+    ],
+  },
+  {
+    question: "Will users need to create accounts or log in?",
+    options: [
+      { label: "No user accounts needed", score: 0 },
+      { label: "Simple login (email/password or social)", score: 1 },
+      { label: "Full auth system with roles & permissions", score: 2 },
+    ],
+  },
+  {
+    question: "Do you need a database or backend logic?",
+    options: [
+      { label: "No — it's a static website", score: 0 },
+      { label: "Basic backend (contact forms, simple data)", score: 1 },
+      { label: "Complex backend with APIs, dashboards, or integrations", score: 2 },
+    ],
+  },
+  {
+    question: "Do you need e-commerce or payment processing?",
+    options: [
+      { label: "No payments needed", score: 0 },
+      { label: "Simple checkout (1–5 products or services)", score: 1 },
+      { label: "Full e-commerce store with inventory management", score: 2 },
+    ],
+  },
+  {
+    question: "What's your timeline?",
+    options: [
+      { label: "No rush — flexible timeline", score: 0 },
+      { label: "Within 2–4 weeks", score: 1 },
+      { label: "ASAP — I need it yesterday", score: 2 },
     ],
   },
 ];
 
 const priceResults = [
-  { minScore: 0, maxScore: 0, price: "$250", label: "Basic Landing", description: "אתר נחיתה בסיסי ונקי שעושה את העבודה." },
-  { minScore: 1, maxScore: 2, price: "$500", label: "Starter Site", description: "אתר מקצועי עם עיצוב מותאם ונוכחות דיגיטלית חזקה." },
-  { minScore: 3, maxScore: 3, price: "$900", label: "Professional", description: "אתר מרובה דפים עם אנימציות, CMS ואופטימיזציה." },
-  { minScore: 4, maxScore: 5, price: "$1,800", label: "Advanced", description: "מערכת מתקדמת עם פונקציונליות backend ועיצוב פרימיום." },
-  { minScore: 6, maxScore: 6, price: "$3,000+", label: "Enterprise", description: "אפליקציית ווב מלאה עם כל הפיצ'רים — ללא פשרות." },
+  { minScore: 0, maxScore: 2, price: "$300", label: "Basic Landing", description: "A clean, effective landing page to establish your online presence." },
+  { minScore: 3, maxScore: 5, price: "$700", label: "Starter Website", description: "A professional multi-page site with custom design and solid foundations." },
+  { minScore: 6, maxScore: 8, price: "$1,500", label: "Professional", description: "A feature-rich website with CMS, animations, and optimized performance." },
+  { minScore: 9, maxScore: 11, price: "$2,500", label: "Advanced", description: "A powerful web platform with backend logic, auth, and premium design." },
+  { minScore: 12, maxScore: 14, price: "$4,000+", label: "Enterprise", description: "A full-scale web application — no compromises, built to scale." },
 ];
 
 function getResult(score: number) {
@@ -137,12 +166,9 @@ export default function Quiz() {
                     Question {currentQ + 1} of {questions.length}
                   </span>
                 </div>
-                <h2 className="text-2xl md:text-3xl font-display font-semibold mb-1">
+                <h2 className="text-2xl md:text-3xl font-display font-semibold mb-6">
                   {questions[currentQ].question}
                 </h2>
-                <p className="text-sm text-muted-foreground font-body mb-8">
-                  {questions[currentQ].subtitle}
-                </p>
 
                 <div className="space-y-3 mb-8">
                   {questions[currentQ].options.map((opt, i) => (
@@ -156,7 +182,6 @@ export default function Quiz() {
                       }`}
                     >
                       <span className="block text-sm font-medium text-foreground">{opt.label}</span>
-                      <span className="block text-xs text-muted-foreground mt-0.5">{opt.subtitle}</span>
                     </button>
                   ))}
                 </div>
@@ -222,7 +247,7 @@ export default function Quiz() {
                     {result.label}
                   </span>
                   <p className="text-muted-foreground font-body max-w-sm mx-auto mb-8 leading-relaxed">
-                    {result.description}
+                  {result.description}
                   </p>
                 </motion.div>
 
