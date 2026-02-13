@@ -8,11 +8,43 @@ import { motion } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 
+const choiceKeyLabels: Record<string, string> = {
+  pages: "Pages",
+  design: "Design Level",
+  cms: "CMS",
+  auth: "Authentication",
+  backend: "Backend/Database",
+  ecommerce: "E-commerce",
+  timeline: "Timeline",
+};
+
 export default function Contact() {
   const [searchParams] = useSearchParams();
   const quizPackage = searchParams.get("package");
   const quizPrice = searchParams.get("price");
+  const choicesRaw = searchParams.get("choices");
   const { t } = useLanguage();
+
+  let choices: Record<string, string> | null = null;
+  try {
+    if (choicesRaw) choices = JSON.parse(choicesRaw);
+  } catch {
+    choices = null;
+  }
+
+  const buildEmailBody = (name: string, email: string, message: string) => {
+    let body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+    if (quizPackage) {
+      body += `\n\n--- Quiz Result ---\nPackage: ${quizPackage} (${quizPrice})`;
+    }
+    if (choices) {
+      body += "\n\n--- Quiz Choices ---";
+      for (const [key, value] of Object.entries(choices)) {
+        body += `\n${choiceKeyLabels[key] || key}: ${value}`;
+      }
+    }
+    return body;
+  };
 
   return (
     <main className="min-h-screen px-6 pb-28">
@@ -47,9 +79,8 @@ export default function Contact() {
             const name = (form.elements.namedItem("name") as HTMLInputElement)?.value || "";
             const email = (form.elements.namedItem("email") as HTMLInputElement)?.value || "";
             const message = (form.elements.namedItem("message") as HTMLTextAreaElement)?.value || "";
-            const packageInfo = quizPackage ? `\n\nQuiz Result: ${quizPackage} (${quizPrice})` : "";
             const subject = quizPackage ? `Project Inquiry — ${quizPackage}` : "New Project Inquiry";
-            const body = `Name: ${name}\nEmail: ${email}\n\n${message}${packageInfo}`;
+            const body = buildEmailBody(name, email, message);
             window.location.href = `mailto:webanovas.contact@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
           }}
         >
