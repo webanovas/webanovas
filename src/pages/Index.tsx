@@ -67,7 +67,7 @@ const Index = () => {
           >
             Digital
             <br />
-            <span className="text-gradient italic">purity.</span>
+            <span className="text-gradient italic">excellence.</span>
           </motion.h1>
 
           <motion.div
