@@ -11,54 +11,61 @@ export default function Quiz() {
 
   const questions = [
     {
+      id: "pages",
       question: t("quiz.q1"),
       options: [
         { label: t("quiz.q1a"), score: 0 },
-        { label: t("quiz.q1b"), score: 1 },
-        { label: t("quiz.q1c"), score: 2 },
+        { label: t("quiz.q1b"), score: 2 },
+        { label: t("quiz.q1c"), score: 5 },
       ],
     },
     {
+      id: "design",
       question: t("quiz.q2"),
       options: [
         { label: t("quiz.q2a"), score: 0 },
-        { label: t("quiz.q2b"), score: 1 },
-        { label: t("quiz.q2c"), score: 2 },
+        { label: t("quiz.q2b"), score: 2 },
+        { label: t("quiz.q2c"), score: 4 },
       ],
     },
     {
+      id: "cms",
       question: t("quiz.q3"),
       options: [
         { label: t("quiz.q3a"), score: 0 },
         { label: t("quiz.q3b"), score: 1 },
-        { label: t("quiz.q3c"), score: 2 },
+        { label: t("quiz.q3c"), score: 3 },
       ],
     },
     {
+      id: "auth",
       question: t("quiz.q4"),
       options: [
         { label: t("quiz.q4a"), score: 0 },
-        { label: t("quiz.q4b"), score: 1 },
-        { label: t("quiz.q4c"), score: 2 },
+        { label: t("quiz.q4b"), score: 2 },
+        { label: t("quiz.q4c"), score: 4 },
       ],
     },
     {
+      id: "backend",
       question: t("quiz.q5"),
       options: [
         { label: t("quiz.q5a"), score: 0 },
-        { label: t("quiz.q5b"), score: 1 },
-        { label: t("quiz.q5c"), score: 2 },
+        { label: t("quiz.q5b"), score: 2 },
+        { label: t("quiz.q5c"), score: 5 },
       ],
     },
     {
+      id: "ecommerce",
       question: t("quiz.q6"),
       options: [
         { label: t("quiz.q6a"), score: 0 },
-        { label: t("quiz.q6b"), score: 1 },
-        { label: t("quiz.q6c"), score: 2 },
+        { label: t("quiz.q6b"), score: 2 },
+        { label: t("quiz.q6c"), score: 5 },
       ],
     },
     {
+      id: "timeline",
       question: t("quiz.q7"),
       options: [
         { label: t("quiz.q7a"), score: 0 },
@@ -68,12 +75,13 @@ export default function Quiz() {
     },
   ];
 
+  // Max possible: 5+4+3+4+5+5+2 = 28
   const priceResults = [
-    { minScore: 0, maxScore: 2, price: "$300", label: t("quiz.r1.label"), description: t("quiz.r1.desc") },
-    { minScore: 3, maxScore: 5, price: "$700", label: t("quiz.r2.label"), description: t("quiz.r2.desc") },
-    { minScore: 6, maxScore: 8, price: "$1,500", label: t("quiz.r3.label"), description: t("quiz.r3.desc") },
-    { minScore: 9, maxScore: 11, price: "$2,500", label: t("quiz.r4.label"), description: t("quiz.r4.desc") },
-    { minScore: 12, maxScore: 14, price: "$4,000+", label: t("quiz.r5.label"), description: t("quiz.r5.desc") },
+    { minScore: 0, maxScore: 3, price: "$300", label: t("quiz.r1.label"), description: t("quiz.r1.desc") },
+    { minScore: 4, maxScore: 8, price: "$700", label: t("quiz.r2.label"), description: t("quiz.r2.desc") },
+    { minScore: 9, maxScore: 14, price: "$1,500", label: t("quiz.r3.label"), description: t("quiz.r3.desc") },
+    { minScore: 15, maxScore: 20, price: "$2,500", label: t("quiz.r4.label"), description: t("quiz.r4.desc") },
+    { minScore: 21, maxScore: 28, price: "$4,000+", label: t("quiz.r5.label"), description: t("quiz.r5.desc") },
   ];
 
   function getResult(score: number) {
@@ -82,6 +90,7 @@ export default function Quiz() {
 
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
+  const [choiceLabels, setChoiceLabels] = useState<string[]>([]);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
 
@@ -91,7 +100,9 @@ export default function Quiz() {
   const handleNext = () => {
     if (selectedOption === null) return;
     const newAnswers = [...answers, questions[currentQ].options[selectedOption].score];
+    const newLabels = [...choiceLabels, questions[currentQ].options[selectedOption].label];
     setAnswers(newAnswers);
+    setChoiceLabels(newLabels);
     setSelectedOption(null);
 
     if (currentQ < questions.length - 1) {
@@ -105,6 +116,7 @@ export default function Quiz() {
     if (currentQ > 0) {
       setCurrentQ(currentQ - 1);
       setAnswers(answers.slice(0, -1));
+      setChoiceLabels(choiceLabels.slice(0, -1));
       setSelectedOption(null);
     }
   };
@@ -112,8 +124,20 @@ export default function Quiz() {
   const handleRestart = () => {
     setCurrentQ(0);
     setAnswers([]);
+    setChoiceLabels([]);
     setSelectedOption(null);
     setShowResult(false);
+  };
+
+  // Build choices param for contact page (question id → chosen label)
+  const buildChoicesParam = () => {
+    const choicesObj: Record<string, string> = {};
+    questions.forEach((q, i) => {
+      if (choiceLabels[i] !== undefined) {
+        choicesObj[q.id] = choiceLabels[i];
+      }
+    });
+    return encodeURIComponent(JSON.stringify(choicesObj));
   };
 
   return (
@@ -254,7 +278,7 @@ export default function Quiz() {
 
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <Button asChild size="lg" className="rounded-full px-8 gap-2 group font-body">
-                    <Link to={`/contact?package=${encodeURIComponent(result.label)}&price=${encodeURIComponent(result.price)}`}>
+                    <Link to={`/contact?package=${encodeURIComponent(result.label)}&price=${encodeURIComponent(result.price)}&choices=${buildChoicesParam()}`}>
                       <MessageCircle className="w-4 h-4" />
                       {t("quiz.letsTalk")}
                       <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
