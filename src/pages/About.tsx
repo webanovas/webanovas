@@ -5,7 +5,7 @@ import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
 const cards = [
   {
     label: "FOUNDER",
-    title: "Ben Gale",
+    title: "Al Joel",
     content: "Developer, designer, and digital strategist with a passion for building products that make a lasting impact.",
   },
   {
