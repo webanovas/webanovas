@@ -1,41 +1,27 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
 import { ArrowRight } from "lucide-react";
-
-const stats = [
-  { value: "50+", label: "Projects Delivered" },
-  { value: "99%", label: "Client Satisfaction" },
-  { value: "<1s", label: "Avg. Load Time" },
-  { value: "24/7", label: "Global Support" },
-];
-
-const features = [
-  {
-    number: "01",
-    title: "Performance",
-    description: "Every millisecond counts. We engineer experiences that load instantly and perform flawlessly at any scale.",
-  },
-  {
-    number: "02",
-    title: "Design",
-    description: "Interfaces that captivate. We craft visual experiences that feel intuitive and look extraordinary.",
-  },
-  {
-    number: "03",
-    title: "Architecture",
-    description: "Solid foundations for complex systems. Scalable, secure, and built to handle real-world demands.",
-  },
-  {
-    number: "04",
-    title: "Strategy",
-    description: "Every decision backed by purpose. We align technology with your business goals for measurable impact.",
-  },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Index = () => {
+  const { t } = useLanguage();
+
+  const stats = [
+    { value: "50+", label: t("home.stat1") },
+    { value: "99%", label: t("home.stat2") },
+    { value: "<1s", label: t("home.stat3") },
+    { value: "24/7", label: t("home.stat4") },
+  ];
+
+  const features = [
+    { number: "01", title: t("home.feat1.title"), description: t("home.feat1.desc") },
+    { number: "02", title: t("home.feat2.title"), description: t("home.feat2.desc") },
+    { number: "03", title: t("home.feat3.title"), description: t("home.feat3.desc") },
+    { number: "04", title: t("home.feat4.title"), description: t("home.feat4.desc") },
+  ];
+
   return (
     <main className="min-h-screen px-6 pb-28">
       <div className="max-w-6xl mx-auto pt-28 md:pt-40">
@@ -54,7 +40,7 @@ const Index = () => {
             <div className="flex items-center gap-3 mb-8">
               <div className="section-line" />
               <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">
-                Available for 2026
+                {t("home.badge")}
               </span>
             </div>
           </motion.div>
@@ -65,9 +51,9 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            Digital
+            {t("home.hero1")}
             <br />
-            <span className="text-gradient italic">excellence.</span>
+            <span className="text-gradient italic">{t("home.hero2")}</span>
           </motion.h1>
 
           <motion.div
@@ -77,11 +63,11 @@ const Index = () => {
             transition={{ delay: 0.6, duration: 0.6 }}
           >
             <p className="text-lg md:text-xl text-muted-foreground max-w-md leading-relaxed font-body">
-              A boutique studio crafting high-performance digital products with precision, purpose, and an obsessive attention to detail.
+              {t("home.subtitle")}
             </p>
             <Button asChild size="lg" className="rounded-full px-8 gap-3 group w-fit">
               <Link to="/work">
-                View Work
+                {t("home.cta")}
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
@@ -108,7 +94,7 @@ const Index = () => {
           <div className="flex items-center gap-3 mb-12">
             <div className="section-line" />
             <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">
-              What We Do
+              {t("home.whatWeDo")}
             </span>
           </div>
 

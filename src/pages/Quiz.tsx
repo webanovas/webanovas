@@ -4,79 +4,82 @@ import { useState } from "react";
 import { ArrowRight, ArrowLeft, Sparkles, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
-const questions = [
-  {
-    question: "How many pages does your website need?",
-    options: [
-      { label: "Just a single landing page", score: 0 },
-      { label: "2–5 pages (About, Services, Contact, etc.)", score: 1 },
-      { label: "6+ pages or a full web application", score: 2 },
-    ],
-  },
-  {
-    question: "What level of design are you looking for?",
-    options: [
-      { label: "Clean and minimal — just get it done", score: 0 },
-      { label: "Custom design with branded look & feel", score: 1 },
-      { label: "Premium design with advanced animations & effects", score: 2 },
-    ],
-  },
-  {
-    question: "Do you need a content management system (CMS)?",
-    options: [
-      { label: "No — content will rarely change", score: 0 },
-      { label: "Basic CMS for blog posts or updates", score: 1 },
-      { label: "Full CMS with multiple content types", score: 2 },
-    ],
-  },
-  {
-    question: "Will users need to create accounts or log in?",
-    options: [
-      { label: "No user accounts needed", score: 0 },
-      { label: "Simple login (email/password or social)", score: 1 },
-      { label: "Full auth system with roles & permissions", score: 2 },
-    ],
-  },
-  {
-    question: "Do you need a database or backend logic?",
-    options: [
-      { label: "No — it's a static website", score: 0 },
-      { label: "Basic backend (contact forms, simple data)", score: 1 },
-      { label: "Complex backend with APIs, dashboards, or integrations", score: 2 },
-    ],
-  },
-  {
-    question: "Do you need e-commerce or payment processing?",
-    options: [
-      { label: "No payments needed", score: 0 },
-      { label: "Simple checkout (1–5 products or services)", score: 1 },
-      { label: "Full e-commerce store with inventory management", score: 2 },
-    ],
-  },
-  {
-    question: "What's your timeline?",
-    options: [
-      { label: "No rush — flexible timeline", score: 0 },
-      { label: "Within 2–4 weeks", score: 1 },
-      { label: "ASAP — I need it yesterday", score: 2 },
-    ],
-  },
-];
-
-const priceResults = [
-  { minScore: 0, maxScore: 2, price: "$300", label: "Basic Landing", description: "A clean, effective landing page to establish your online presence." },
-  { minScore: 3, maxScore: 5, price: "$700", label: "Starter Website", description: "A professional multi-page site with custom design and solid foundations." },
-  { minScore: 6, maxScore: 8, price: "$1,500", label: "Professional", description: "A feature-rich website with CMS, animations, and optimized performance." },
-  { minScore: 9, maxScore: 11, price: "$2,500", label: "Advanced", description: "A powerful web platform with backend logic, auth, and premium design." },
-  { minScore: 12, maxScore: 14, price: "$4,000+", label: "Enterprise", description: "A full-scale web application — no compromises, built to scale." },
-];
-
-function getResult(score: number) {
-  return priceResults.find((r) => score >= r.minScore && score <= r.maxScore) || priceResults[4];
-}
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Quiz() {
+  const { t } = useLanguage();
+
+  const questions = [
+    {
+      question: t("quiz.q1"),
+      options: [
+        { label: t("quiz.q1a"), score: 0 },
+        { label: t("quiz.q1b"), score: 1 },
+        { label: t("quiz.q1c"), score: 2 },
+      ],
+    },
+    {
+      question: t("quiz.q2"),
+      options: [
+        { label: t("quiz.q2a"), score: 0 },
+        { label: t("quiz.q2b"), score: 1 },
+        { label: t("quiz.q2c"), score: 2 },
+      ],
+    },
+    {
+      question: t("quiz.q3"),
+      options: [
+        { label: t("quiz.q3a"), score: 0 },
+        { label: t("quiz.q3b"), score: 1 },
+        { label: t("quiz.q3c"), score: 2 },
+      ],
+    },
+    {
+      question: t("quiz.q4"),
+      options: [
+        { label: t("quiz.q4a"), score: 0 },
+        { label: t("quiz.q4b"), score: 1 },
+        { label: t("quiz.q4c"), score: 2 },
+      ],
+    },
+    {
+      question: t("quiz.q5"),
+      options: [
+        { label: t("quiz.q5a"), score: 0 },
+        { label: t("quiz.q5b"), score: 1 },
+        { label: t("quiz.q5c"), score: 2 },
+      ],
+    },
+    {
+      question: t("quiz.q6"),
+      options: [
+        { label: t("quiz.q6a"), score: 0 },
+        { label: t("quiz.q6b"), score: 1 },
+        { label: t("quiz.q6c"), score: 2 },
+      ],
+    },
+    {
+      question: t("quiz.q7"),
+      options: [
+        { label: t("quiz.q7a"), score: 0 },
+        { label: t("quiz.q7b"), score: 1 },
+        { label: t("quiz.q7c"), score: 2 },
+      ],
+    },
+  ];
+
+  const priceResults = [
+    { minScore: 0, maxScore: 2, price: "$300", label: t("quiz.r1.label"), description: t("quiz.r1.desc") },
+    { minScore: 3, maxScore: 5, price: "$700", label: t("quiz.r2.label"), description: t("quiz.r2.desc") },
+    { minScore: 6, maxScore: 8, price: "$1,500", label: t("quiz.r3.label"), description: t("quiz.r3.desc") },
+    { minScore: 9, maxScore: 11, price: "$2,500", label: t("quiz.r4.label"), description: t("quiz.r4.desc") },
+    { minScore: 12, maxScore: 14, price: "$4,000+", label: t("quiz.r5.label"), description: t("quiz.r5.desc") },
+  ];
+
+  function getResult(score: number) {
+    return priceResults.find((r) => score >= r.minScore && score <= r.maxScore) || priceResults[4];
+  }
+
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -124,14 +127,14 @@ export default function Quiz() {
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="section-line" />
-            <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">Price Calculator</span>
+            <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">{t("quiz.badge")}</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-display font-bold tracking-tight mb-4">
-            Find your<br />
-            <span className="text-gradient italic">perfect fit.</span>
+            {t("quiz.title1")}<br />
+            <span className="text-gradient italic">{t("quiz.title2")}</span>
           </h1>
           <p className="text-muted-foreground font-body leading-relaxed">
-            Answer a few quick questions and we'll suggest the right package for your project.
+            {t("quiz.subtitle")}
           </p>
         </motion.div>
 
@@ -162,7 +165,7 @@ export default function Quiz() {
               <div className="glass-card p-8 md:p-10">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[10px] uppercase tracking-[0.3em] text-primary font-body">
-                    Question {currentQ + 1} of {questions.length}
+                    {t("quiz.question")} {currentQ + 1} {t("quiz.of")} {questions.length}
                   </span>
                 </div>
                 <h2 className="text-2xl md:text-3xl font-display font-semibold mb-6">
@@ -193,14 +196,14 @@ export default function Quiz() {
                     className="gap-2 font-body rounded-full"
                   >
                     <ArrowLeft className="w-4 h-4" />
-                    Back
+                    {t("quiz.back")}
                   </Button>
                   <Button
                     onClick={handleNext}
                     disabled={selectedOption === null}
                     className="gap-2 font-body rounded-full"
                   >
-                    {currentQ === questions.length - 1 ? "See Result" : "Next"}
+                    {currentQ === questions.length - 1 ? t("quiz.seeResult") : t("quiz.next")}
                     <ArrowRight className="w-4 h-4" />
                   </Button>
                 </div>
@@ -214,7 +217,6 @@ export default function Quiz() {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="glass-card p-8 md:p-12 text-center relative overflow-hidden">
-                {/* Glow effect */}
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{
@@ -231,7 +233,7 @@ export default function Quiz() {
                 </motion.div>
 
                 <span className="text-[10px] uppercase tracking-[0.3em] text-primary font-body block mb-3">
-                  Estimated Investment
+                  {t("quiz.estimated")}
                 </span>
 
                 <motion.div
@@ -246,7 +248,7 @@ export default function Quiz() {
                     {result.label}
                   </span>
                   <p className="text-muted-foreground font-body max-w-sm mx-auto mb-8 leading-relaxed">
-                  {result.description}
+                    {result.description}
                   </p>
                 </motion.div>
 
@@ -254,7 +256,7 @@ export default function Quiz() {
                   <Button asChild size="lg" className="rounded-full px-8 gap-2 group font-body">
                     <Link to={`/contact?package=${encodeURIComponent(result.label)}&price=${encodeURIComponent(result.price)}`}>
                       <MessageCircle className="w-4 h-4" />
-                      Let's Talk
+                      {t("quiz.letsTalk")}
                       <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
@@ -264,12 +266,12 @@ export default function Quiz() {
                     onClick={handleRestart}
                     className="rounded-full px-8 font-body"
                   >
-                    Start Over
+                    {t("quiz.startOver")}
                   </Button>
                 </div>
 
                 <p className="text-xs text-muted-foreground font-body mt-6">
-                  This is an estimate — <Link to="/contact" className="text-primary hover:underline">contact us</Link> for a tailored quote.
+                  {t("quiz.estimate")} <Link to="/contact" className="text-primary hover:underline">{t("quiz.contactForQuote")}</Link> {t("quiz.forTailored")}
                 </p>
               </div>
             </motion.div>

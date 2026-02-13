@@ -1,32 +1,35 @@
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
-
-const services = [
-  {
-    number: "01",
-    category: "FRONT-END",
-    title: "Landing Pages",
-    description: "High-converting, beautifully crafted landing pages designed to make an unforgettable first impression. Responsive, fast, and optimized for results.",
-    details: ["Responsive Design", "Performance Optimization", "A/B Testing Ready"],
-  },
-  {
-    number: "02",
-    category: "FULL-STACK",
-    title: "Web Systems",
-    description: "Complete web applications built from the ground up. From user dashboards to complex platforms — scalable architecture that grows with your business.",
-    details: ["Custom Architecture", "API Development", "Database Design"],
-  },
-  {
-    number: "03",
-    category: "OPTIMIZATION",
-    title: "Performance",
-    description: "Speed audits, Core Web Vitals optimization, and infrastructure tuning. We make your existing products faster and more reliable.",
-    details: ["Core Web Vitals", "Lighthouse Audits", "CDN & Caching"],
-  },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Services() {
+  const { t } = useLanguage();
+
+  const services = [
+    {
+      number: "01",
+      category: t("services.s1.cat"),
+      title: t("services.s1.title"),
+      description: t("services.s1.desc"),
+      details: [t("services.s1.d1"), t("services.s1.d2"), t("services.s1.d3")],
+    },
+    {
+      number: "02",
+      category: t("services.s2.cat"),
+      title: t("services.s2.title"),
+      description: t("services.s2.desc"),
+      details: [t("services.s2.d1"), t("services.s2.d2"), t("services.s2.d3")],
+    },
+    {
+      number: "03",
+      category: t("services.s3.cat"),
+      title: t("services.s3.title"),
+      description: t("services.s3.desc"),
+      details: [t("services.s3.d1"), t("services.s3.d2"), t("services.s3.d3")],
+    },
+  ];
+
   return (
     <main className="min-h-screen px-6 pb-28">
       <div className="max-w-6xl mx-auto pt-28 md:pt-40">
@@ -38,13 +41,13 @@ export default function Services() {
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="section-line" />
-            <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">Services</span>
+            <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">{t("services.badge")}</span>
           </div>
           <h1 className="text-5xl md:text-8xl font-display font-bold tracking-tight mb-6">
-            Expertise<span className="text-gradient">.</span>
+            {t("services.title")}<span className="text-gradient">.</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-lg font-body leading-relaxed">
-            Focused services designed to deliver exceptional digital products with clarity and precision.
+            {t("services.subtitle")}
           </p>
         </motion.div>
 

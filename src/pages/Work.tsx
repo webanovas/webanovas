@@ -1,36 +1,39 @@
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 import vanguardImg from "@/assets/work-vanguard.jpg";
 import nexusImg from "@/assets/work-nexus.jpg";
 import artistImg from "@/assets/work-artist.jpg";
 
-const projects = [
-  {
-    category: "LUXURY REAL ESTATE",
-    title: "Vanguard Estates",
-    description: "A premium property showcase platform with immersive visuals, smooth animations, and an elegant browsing experience.",
-    year: "2025",
-    image: vanguardImg,
-  },
-  {
-    category: "AI / SAAS",
-    title: "Nexus AI",
-    description: "An intelligent SaaS dashboard featuring real-time analytics, AI-powered insights, and a sleek modern interface.",
-    year: "2025",
-    image: nexusImg,
-  },
-  {
-    category: "CREATIVE",
-    title: "The Artist Loft",
-    description: "A bold creative portfolio with dynamic layouts, rich media galleries, and an expressive artistic design.",
-    year: "2024",
-    image: artistImg,
-  },
-];
-
 export default function Work() {
+  const { t } = useLanguage();
+
+  const projects = [
+    {
+      category: t("work.p1.cat"),
+      title: t("work.p1.title"),
+      description: t("work.p1.desc"),
+      year: "2025",
+      image: vanguardImg,
+    },
+    {
+      category: t("work.p2.cat"),
+      title: t("work.p2.title"),
+      description: t("work.p2.desc"),
+      year: "2025",
+      image: nexusImg,
+    },
+    {
+      category: t("work.p3.cat"),
+      title: t("work.p3.title"),
+      description: t("work.p3.desc"),
+      year: "2024",
+      image: artistImg,
+    },
+  ];
+
   return (
     <main className="min-h-screen px-6 pb-28">
       <div className="max-w-6xl mx-auto pt-28 md:pt-40">
@@ -42,11 +45,11 @@ export default function Work() {
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="section-line" />
-            <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">Portfolio</span>
+            <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">{t("work.badge")}</span>
           </div>
           <h1 className="text-5xl md:text-8xl font-display font-bold tracking-tight mb-6">
-            Selected<br />
-            <span className="text-gradient italic">work.</span>
+            {t("work.title1")}<br />
+            <span className="text-gradient italic">{t("work.title2")}</span>
           </h1>
         </motion.div>
 

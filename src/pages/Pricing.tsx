@@ -4,62 +4,65 @@ import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
 import { ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
-const packages = [
-  {
-    tier: "STARTER",
-    title: "Landing Page",
-    price: "$350",
-    description: "A clean, effective single page to establish your online presence and start converting visitors.",
-    features: [
-      "Custom responsive design",
-      "Up to 4 sections",
-      "Contact form integration",
-      "Basic SEO setup",
-      "Mobile-friendly",
-      "1 round of revisions",
-    ],
-    delivery: "3–5 days",
-    popular: false,
-  },
-  {
-    tier: "PROFESSIONAL",
-    title: "Multi-Page Website",
-    price: "$900",
-    description: "A complete web experience with multiple pages, animations, and a premium feel that sets you apart.",
-    features: [
-      "Up to 8 custom pages",
-      "Advanced animations & transitions",
-      "CMS integration",
-      "Performance optimization",
-      "Analytics setup",
-      "3 rounds of revisions",
-      "Priority support",
-    ],
-    delivery: "1–2 weeks",
-    popular: true,
-  },
-  {
-    tier: "ENTERPRISE",
-    title: "Web Application",
-    price: "$2,500",
-    description: "Full-scale web systems with backend logic, user authentication, dashboards, and complex functionality.",
-    features: [
-      "Custom web application",
-      "Backend & database setup",
-      "User authentication",
-      "Admin dashboard",
-      "API integrations",
-      "Scalable architecture",
-      "Ongoing support plan",
-      "Unlimited revisions",
-    ],
-    delivery: "4–8 weeks",
-    popular: false,
-  },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Pricing() {
+  const { t } = useLanguage();
+
+  const packages = [
+    {
+      tier: t("pricing.starter"),
+      title: t("pricing.starterTitle"),
+      price: "$350",
+      description: t("pricing.starterDesc"),
+      features: [
+        t("pricing.f.customResponsive"),
+        t("pricing.f.upTo4"),
+        t("pricing.f.contactForm"),
+        t("pricing.f.basicSeo"),
+        t("pricing.f.mobileFriendly"),
+        t("pricing.f.1revision"),
+      ],
+      delivery: "3–5 days",
+      popular: false,
+    },
+    {
+      tier: t("pricing.professional"),
+      title: t("pricing.professionalTitle"),
+      price: "$900",
+      description: t("pricing.professionalDesc"),
+      features: [
+        t("pricing.f.upTo8"),
+        t("pricing.f.advancedAnim"),
+        t("pricing.f.cmsInteg"),
+        t("pricing.f.perfOpt"),
+        t("pricing.f.analytics"),
+        t("pricing.f.3revisions"),
+        t("pricing.f.prioritySupport"),
+      ],
+      delivery: "1–2 weeks",
+      popular: true,
+    },
+    {
+      tier: t("pricing.enterprise"),
+      title: t("pricing.enterpriseTitle"),
+      price: "$2,500",
+      description: t("pricing.enterpriseDesc"),
+      features: [
+        t("pricing.f.customApp"),
+        t("pricing.f.backendDb"),
+        t("pricing.f.userAuth"),
+        t("pricing.f.adminDash"),
+        t("pricing.f.apiInteg"),
+        t("pricing.f.scalableArch"),
+        t("pricing.f.ongoingSupport"),
+        t("pricing.f.unlimitedRev"),
+      ],
+      delivery: "4–8 weeks",
+      popular: false,
+    },
+  ];
+
   return (
     <main className="min-h-screen px-6 pb-28">
       <div className="max-w-6xl mx-auto pt-28 md:pt-40">
@@ -71,14 +74,14 @@ export default function Pricing() {
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="section-line" />
-            <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">Pricing</span>
+            <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">{t("pricing.badge")}</span>
           </div>
           <h1 className="text-5xl md:text-8xl font-display font-bold tracking-tight mb-6">
-            Investment<br />
-            <span className="text-gradient italic">packages.</span>
+            {t("pricing.title1")}<br />
+            <span className="text-gradient italic">{t("pricing.title2")}</span>
           </h1>
           <p className="text-lg text-muted-foreground font-body leading-relaxed max-w-xl">
-            Transparent starting prices for every scope. Every project is unique — reach out for a tailored quote.
+            {t("pricing.subtitle")}
           </p>
         </motion.div>
 
@@ -88,7 +91,7 @@ export default function Pricing() {
               <div className={`glass-card p-8 md:p-10 flex flex-col h-full relative ${pkg.popular ? "border-primary/40" : ""}`}>
                 {pkg.popular && (
                   <div className="absolute -top-3 left-8 px-4 py-1 bg-primary text-primary-foreground text-[10px] uppercase tracking-[0.2em] font-body font-semibold rounded-full">
-                    Most Popular
+                    {t("pricing.mostPopular")}
                   </div>
                 )}
                 <span className="text-[10px] uppercase tracking-[0.3em] text-primary font-body mb-4 block">{pkg.tier}</span>
@@ -109,12 +112,12 @@ export default function Pricing() {
                 </ul>
 
                 <div className="text-xs text-muted-foreground font-body mb-6">
-                  Delivery: <span className="text-foreground">{pkg.delivery}</span>
+                  {t("pricing.delivery")} <span className="text-foreground">{pkg.delivery}</span>
                 </div>
 
                 <Button asChild className={`w-full rounded-full gap-2 group ${pkg.popular ? "" : "variant-outline bg-secondary/50 border border-border/50 text-foreground hover:bg-secondary"}`}>
                   <Link to={`/contact?package=${encodeURIComponent(pkg.title)}&price=${encodeURIComponent(pkg.price)}`}>
-                    Get a Quote
+                    {t("pricing.getQuote")}
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </Button>
@@ -129,20 +132,20 @@ export default function Pricing() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}
         >
-          <h3 className="text-2xl md:text-3xl font-display font-semibold mb-4">Not sure which package?</h3>
+          <h3 className="text-2xl md:text-3xl font-display font-semibold mb-4">{t("pricing.notSure")}</h3>
           <p className="text-muted-foreground font-body mb-6 max-w-md mx-auto">
-            Take our 30-second quiz to find the perfect fit for your project — or reach out directly for a custom quote.
+            {t("pricing.notSureDesc")}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild size="lg" className="rounded-full px-8 gap-2 group">
               <Link to="/quiz">
-                Take the Quiz
+                {t("pricing.takeQuiz")}
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="rounded-full px-8 gap-2 group">
               <Link to="/contact">
-                Contact Us
+                {t("pricing.contactUs")}
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
