@@ -7,6 +7,7 @@ import { AnimatePresence } from "framer-motion";
 import { FloatingNav } from "@/components/FloatingNav";
 import { CursorGlow } from "@/components/CursorGlow";
 import { PageTransition } from "@/components/PageTransition";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import Work from "./pages/Work";
@@ -46,6 +47,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <CursorGlow />
         <FloatingNav />
         <AnimatedRoutes />

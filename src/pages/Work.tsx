@@ -1,7 +1,7 @@
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
-import { ArrowUpRight } from "lucide-react";
+
 import vanguardImg from "@/assets/work-vanguard.jpg";
 import nexusImg from "@/assets/work-nexus.jpg";
 import artistImg from "@/assets/work-artist.jpg";
@@ -53,7 +53,7 @@ export default function Work() {
         <StaggerChildren className="space-y-6">
           {projects.map((p, i) => (
             <StaggerItem key={p.title}>
-              <div className="glass-card overflow-hidden group cursor-pointer">
+              <div className="glass-card overflow-hidden group">
                 <div className="h-56 md:h-72 relative overflow-hidden">
                   <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />
@@ -62,9 +62,6 @@ export default function Work() {
                   </span>
                   <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 z-10">
                     <span className="text-[10px] uppercase tracking-[0.3em] text-primary font-body">{p.category}</span>
-                  </div>
-                  <div className="absolute top-8 right-8 md:top-12 md:right-12 w-10 h-10 rounded-full border border-foreground/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:border-primary group-hover:bg-primary/10">
-                    <ArrowUpRight className="w-4 h-4 text-foreground/50 group-hover:text-primary transition-colors" />
                   </div>
                 </div>
                 <div className="p-8 md:p-12">
