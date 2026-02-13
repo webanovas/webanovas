@@ -1,31 +1,18 @@
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
-
-const cards = [
-  {
-    label: "FOUNDER",
-    title: "Al Joel",
-    content: "Developer, designer, and digital strategist with a passion for building products that make a lasting impact.",
-  },
-  {
-    label: "BASED IN",
-    title: "Israel → Global",
-    content: "Operating globally from Israel. We collaborate with clients across time zones to deliver world-class results.",
-  },
-  {
-    label: "PHILOSOPHY",
-    title: '"Less, but better."',
-    content: "We strip away the unnecessary to reveal what truly matters — clarity, function, and beauty in every pixel.",
-  },
-  {
-    label: "THE STACK",
-    title: "Modern & Scalable",
-    content: "Python, Java, and modern JavaScript frameworks. We choose the right tools for each project, never a one-size-fits-all approach.",
-  },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function About() {
+  const { t } = useLanguage();
+
+  const cards = [
+    { label: t("about.c1.label"), title: t("about.c1.title"), content: t("about.c1.content") },
+    { label: t("about.c2.label"), title: t("about.c2.title"), content: t("about.c2.content") },
+    { label: t("about.c3.label"), title: t("about.c3.title"), content: t("about.c3.content") },
+    { label: t("about.c4.label"), title: t("about.c4.title"), content: t("about.c4.content") },
+  ];
+
   return (
     <main className="min-h-screen px-6 pb-28">
       <div className="max-w-6xl mx-auto pt-28 md:pt-40">
@@ -37,14 +24,14 @@ export default function About() {
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="section-line" />
-            <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">The Studio</span>
+            <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">{t("about.badge")}</span>
           </div>
           <h1 className="text-5xl md:text-8xl font-display font-bold tracking-tight mb-6">
-            Digital identity,<br />
-            <span className="text-gradient italic">redefined.</span>
+            {t("about.title1")}<br />
+            <span className="text-gradient italic">{t("about.title2")}</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-lg font-body leading-relaxed">
-            A boutique studio focused on building digital products that are as purposeful as they are beautiful.
+            {t("about.subtitle")}
           </p>
         </motion.div>
 

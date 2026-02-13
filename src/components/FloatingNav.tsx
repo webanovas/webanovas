@@ -4,18 +4,20 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const links = [
-  { to: "/", label: "Home" },
-  { to: "/services", label: "Services" },
-  { to: "/work", label: "Work" },
-  { to: "/process", label: "Process" },
-  { to: "/about", label: "About" },
-  { to: "/pricing", label: "Pricing" },
-  { to: "/lab", label: "Lab" },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 function DesktopNav() {
+  const { t } = useLanguage();
+  const links = [
+    { to: "/", label: t("nav.home") },
+    { to: "/services", label: t("nav.services") },
+    { to: "/work", label: t("nav.work") },
+    { to: "/process", label: t("nav.process") },
+    { to: "/about", label: t("nav.about") },
+    { to: "/pricing", label: t("nav.pricing") },
+    { to: "/lab", label: t("nav.lab") },
+  ];
+
   return (
     <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
       <div className="flex items-center gap-1 rounded-full bg-card/90 backdrop-blur-xl border border-border/40 px-2 py-2 shadow-2xl shadow-black/40">
@@ -47,7 +49,7 @@ function DesktopNav() {
             )
           }
         >
-          Start Project
+          {t("nav.startProject")}
         </NavLink>
       </div>
     </nav>
@@ -56,6 +58,16 @@ function DesktopNav() {
 
 function MobileNav() {
   const [open, setOpen] = useState(false);
+  const { t } = useLanguage();
+  const links = [
+    { to: "/", label: t("nav.home") },
+    { to: "/services", label: t("nav.services") },
+    { to: "/work", label: t("nav.work") },
+    { to: "/process", label: t("nav.process") },
+    { to: "/about", label: t("nav.about") },
+    { to: "/pricing", label: t("nav.pricing") },
+    { to: "/lab", label: t("nav.lab") },
+  ];
 
   return (
     <>
@@ -118,7 +130,7 @@ function MobileNav() {
                   )
                 }
               >
-                Start Project
+                {t("nav.startProject")}
               </NavLink>
             </motion.nav>
           </>

@@ -1,8 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
   const [phase, setPhase] = useState<"logo" | "reveal" | "done">("logo");
+  const { t } = useLanguage();
 
   useEffect(() => {
     const t1 = setTimeout(() => setPhase("reveal"), 1800);
@@ -24,7 +26,6 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          {/* Subtle radial glow */}
           <motion.div
             className="absolute w-[300px] h-[300px] rounded-full"
             style={{
@@ -36,7 +37,6 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
           />
 
           <div className="relative flex flex-col items-center gap-6">
-            {/* Logo text */}
             <motion.div
               className="overflow-hidden"
               initial={{ opacity: 0 }}
@@ -54,17 +54,15 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
               </motion.h1>
             </motion.div>
 
-            {/* Tagline */}
             <motion.p
               className="text-xs uppercase tracking-[0.4em] text-muted-foreground font-body"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6, ease: "easeOut" }}
             >
-              Digital Excellence
+              {t("intro.tagline")}
             </motion.p>
 
-            {/* Loading line */}
             <motion.div
               className="w-24 h-px bg-primary/30 mt-2 overflow-hidden"
               initial={{ opacity: 0 }}

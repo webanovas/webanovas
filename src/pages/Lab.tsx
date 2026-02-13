@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Smartphone } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 import { ThemeSwitcher } from "@/components/lab/ThemeSwitcher";
 import { MagneticButton } from "@/components/lab/MagneticButton";
@@ -15,6 +16,7 @@ import { SwipeCards } from "@/components/lab/SwipeCards";
 
 export default function Lab() {
   const isMobile = useIsMobile();
+  const { t } = useLanguage();
 
   return (
     <main className="min-h-screen px-4 md:px-6 pb-28">
@@ -27,17 +29,16 @@ export default function Lab() {
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="section-line" />
-            <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">Playground</span>
+            <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">{t("lab.badge")}</span>
           </div>
           <h1 className="text-4xl md:text-8xl font-display font-bold tracking-tight mb-4 md:mb-6">
-            The <span className="text-gradient italic">Lab.</span>
+            {t("lab.title1")}<span className="text-gradient italic">{t("lab.title2")}</span>
           </h1>
           <p className="text-base md:text-lg text-muted-foreground font-body max-w-md leading-relaxed">
-            Interactive experiments showcasing what we can build. Go ahead — play around.
+            {t("lab.subtitle")}
           </p>
         </motion.div>
 
-        {/* Mobile-only section */}
         {isMobile && (
           <motion.div
             className="mb-8"
@@ -47,7 +48,7 @@ export default function Lab() {
           >
             <div className="flex items-center gap-2 mb-4">
               <Smartphone className="w-4 h-4 text-primary" />
-              <span className="text-xs font-body font-medium text-primary uppercase tracking-[0.2em]">Mobile Exclusive</span>
+              <span className="text-xs font-body font-medium text-primary uppercase tracking-[0.2em]">{t("lab.mobileExclusive")}</span>
             </div>
             <div className="grid grid-cols-1 gap-4">
               <ShakeDetector />

@@ -2,32 +2,35 @@ import { Footer } from "@/components/Footer";
 import { AnimatedProgress } from "@/components/AnimatedProgress";
 import { motion } from "framer-motion";
 import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
-
-const phases = [
-  {
-    number: "01",
-    percent: 25,
-    title: "Discovery",
-    description: "We dive deep into your vision, goals, and audience. Through research and strategic planning, we define the project scope and creative direction.",
-    deliverables: ["Brand Audit", "Wireframes", "Project Scope"],
-  },
-  {
-    number: "02",
-    percent: 75,
-    title: "Development",
-    description: "Where concepts become reality. Our engineers build your product with clean code, modern frameworks, and meticulous attention to detail.",
-    deliverables: ["Frontend", "Backend", "Integrations"],
-  },
-  {
-    number: "03",
-    percent: 100,
-    title: "Deployment",
-    description: "We rigorously test, optimize, and launch your product. Post-launch, we monitor performance and provide ongoing support.",
-    deliverables: ["QA Testing", "Launch", "Monitoring"],
-  },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function ProcessPage() {
+  const { t } = useLanguage();
+
+  const phases = [
+    {
+      number: "01",
+      percent: 25,
+      title: t("process.p1.title"),
+      description: t("process.p1.desc"),
+      deliverables: [t("process.p1.d1"), t("process.p1.d2"), t("process.p1.d3")],
+    },
+    {
+      number: "02",
+      percent: 75,
+      title: t("process.p2.title"),
+      description: t("process.p2.desc"),
+      deliverables: [t("process.p2.d1"), t("process.p2.d2"), t("process.p2.d3")],
+    },
+    {
+      number: "03",
+      percent: 100,
+      title: t("process.p3.title"),
+      description: t("process.p3.desc"),
+      deliverables: [t("process.p3.d1"), t("process.p3.d2"), t("process.p3.d3")],
+    },
+  ];
+
   return (
     <main className="min-h-screen px-6 pb-28">
       <div className="max-w-6xl mx-auto pt-28 md:pt-40">
@@ -39,14 +42,14 @@ export default function ProcessPage() {
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="section-line" />
-            <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">How We Work</span>
+            <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">{t("process.badge")}</span>
           </div>
           <h1 className="text-5xl md:text-8xl font-display font-bold tracking-tight mb-6">
-            The<br />
-            <span className="text-gradient italic">playbook.</span>
+            {t("process.title1")}<br />
+            <span className="text-gradient italic">{t("process.title2")}</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-lg font-body leading-relaxed">
-            A structured, transparent workflow designed to deliver exceptional results — on time and within scope.
+            {t("process.subtitle")}
           </p>
         </motion.div>
 

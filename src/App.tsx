@@ -10,6 +10,8 @@ import { IntroAnimation } from "@/components/IntroAnimation";
 import { CursorGlow } from "@/components/CursorGlow";
 import { PageTransition } from "@/components/PageTransition";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { LanguageProvider, useLanguage } from "@/i18n/LanguageContext";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import Work from "./pages/Work";
@@ -45,22 +47,38 @@ function AnimatedRoutes() {
   );
 }
 
-const App = () => {
+function AppContent() {
   const [introComplete, setIntroComplete] = useState(false);
   const handleIntroComplete = useCallback(() => setIntroComplete(true), []);
+  const { dir } = useLanguage();
 
+  return (
+    <div dir={dir}>
+      <Toaster />
+      <Sonner />
+      {!introComplete && <IntroAnimation onComplete={handleIntroComplete} />}
+      <BrowserRouter>
+        <ScrollToTop />
+        <CursorGlow />
+        {introComplete && (
+          <>
+            <FloatingNav />
+            <LanguageSwitcher />
+          </>
+        )}
+        <AnimatedRoutes />
+      </BrowserRouter>
+    </div>
+  );
+}
+
+const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        {!introComplete && <IntroAnimation onComplete={handleIntroComplete} />}
-        <BrowserRouter>
-          <ScrollToTop />
-          <CursorGlow />
-          {introComplete && <FloatingNav />}
-          <AnimatedRoutes />
-        </BrowserRouter>
+        <LanguageProvider>
+          <AppContent />
+        </LanguageProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );
