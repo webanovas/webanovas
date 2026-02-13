@@ -29,7 +29,7 @@ export function SwipeCards() {
         <h3 className="text-lg font-semibold">Swipe Cards</h3>
       </div>
       <p className="text-muted-foreground text-sm mb-4">Swipe cards left or right to dismiss.</p>
-      <div className="flex-1 flex items-center justify-center min-h-[180px] relative">
+      <div className="flex-1 flex items-center justify-center min-h-[180px] relative overflow-hidden">
         {stack.slice(0, 3).map((card, i) => {
           const isTop = i === 0;
           return (
@@ -79,7 +79,7 @@ function SwipeCard({
       }}
       className={`absolute w-52 h-32 rounded-2xl bg-gradient-to-br ${card.color} border border-border/40 flex items-center justify-center cursor-grab active:cursor-grabbing touch-none`}
     >
-      <span className="text-sm font-semibold text-foreground">{card.text}</span>
+      <span className={`text-sm font-semibold text-foreground transition-opacity ${isTop ? "opacity-100" : "opacity-0"}`}>{card.text}</span>
     </motion.div>
   );
 }
