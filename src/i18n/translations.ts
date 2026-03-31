@@ -442,7 +442,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "lab.mobileExclusive": "בלעדי למובייל",
 
     // Footer
-    "footer.rights": "© 2026 Webanovas. כל הזכויות שמורות.",
+    "footer.rights": "© 2026 Siterix Studios. כל הזכויות שמורות.",
 
     // Intro
     "intro.tagline": "מצוינות דיגיטלית",
