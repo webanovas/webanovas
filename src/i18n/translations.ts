@@ -445,7 +445,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.rights": "© 2026 Siterix Studios. כל הזכויות שמורות.",
 
     // Intro
-    "intro.tagline": "מצוינות דיגיטלית",
+    "intro.tagline": "נוצר על ידי Siterix Studios",
 
     // Pricing features
     "pricing.f.customResponsive": "עיצוב רספונסיבי מותאם",
