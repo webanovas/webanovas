@@ -484,8 +484,8 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Index
     "home.badge": "Disponible para 2026",
-    "home.hero1": "Excelencia",
-    "home.hero2": "digital.",
+    "home.hero1": "Somos",
+    "home.hero2": "Siterix Studios.",
     "home.subtitle": "Un estudio boutique que crea productos digitales de alto rendimiento con precisión, propósito y una atención obsesiva al detalle.",
     "home.cta": "Ver Trabajos",
     "home.whatWeDo": "Lo que hacemos",
