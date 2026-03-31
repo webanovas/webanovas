@@ -40,7 +40,7 @@ const Index = () => {
             <div className="flex items-center gap-3 mb-8">
               <div className="section-line" />
               <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">
-                {t("home.badge")}
+                Siterix Studios
               </span>
             </div>
           </motion.div>
