@@ -207,7 +207,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "lab.mobileExclusive": "Mobile Exclusive",
 
     // Footer
-    "footer.rights": "© 2026 Webanovas. All rights reserved.",
+    "footer.rights": "© 2026 Siterix Studios. All rights reserved.",
 
     // Intro
     "intro.tagline": "Digital Excellence",
@@ -442,7 +442,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "lab.mobileExclusive": "בלעדי למובייל",
 
     // Footer
-    "footer.rights": "© 2026 Webanovas. כל הזכויות שמורות.",
+    "footer.rights": "© 2026 Siterix Studios. כל הזכויות שמורות.",
 
     // Intro
     "intro.tagline": "מצוינות דיגיטלית",
@@ -677,7 +677,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "lab.mobileExclusive": "Exclusivo para Móvil",
 
     // Footer
-    "footer.rights": "© 2026 Webanovas. Todos los derechos reservados.",
+    "footer.rights": "© 2026 Siterix Studios. Todos los derechos reservados.",
 
     // Intro
     "intro.tagline": "Excelencia Digital",

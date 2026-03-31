@@ -81,7 +81,7 @@ export default function Contact() {
             const message = (form.elements.namedItem("message") as HTMLTextAreaElement)?.value || "";
             const subject = quizPackage ? `Project Inquiry — ${quizPackage}` : "New Project Inquiry";
             const body = buildEmailBody(name, email, message);
-            window.location.href = `mailto:webanovas.contact@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = `mailto:siterixstudios@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
           }}
         >
           {quizPackage && (
