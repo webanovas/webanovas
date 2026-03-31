@@ -207,7 +207,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "lab.mobileExclusive": "Mobile Exclusive",
 
     // Footer
-    "footer.rights": "© 2026 Webanovas. All rights reserved.",
+    "footer.rights": "© 2026 Siterix Studios. All rights reserved.",
 
     // Intro
     "intro.tagline": "Digital Excellence",
