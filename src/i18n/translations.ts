@@ -14,8 +14,8 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Index
     "home.badge": "Available for 2026",
-    "home.hero1": "Digital",
-    "home.hero2": "excellence.",
+    "home.hero1": "We are",
+    "home.hero2": "Siterix Studios.",
     "home.subtitle": "A boutique studio crafting high-performance digital products with precision, purpose, and an obsessive attention to detail.",
     "home.cta": "View Work",
     "home.whatWeDo": "What We Do",
@@ -249,8 +249,8 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Index
     "home.badge": "זמינים ל-2026",
-    "home.hero1": "מצוינות",
-    "home.hero2": "דיגיטלית.",
+    "home.hero1": "אנחנו",
+    "home.hero2": "Siterix Studios.",
     "home.subtitle": "סטודיו בוטיק ליצירת מוצרים דיגיטליים בעלי ביצועים גבוהים, עם דיוק, מטרה ותשומת לב אובססיבית לפרטים.",
     "home.cta": "צפה בעבודות",
     "home.whatWeDo": "מה אנחנו עושים",
@@ -484,8 +484,8 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Index
     "home.badge": "Disponible para 2026",
-    "home.hero1": "Excelencia",
-    "home.hero2": "digital.",
+    "home.hero1": "Somos",
+    "home.hero2": "Siterix Studios.",
     "home.subtitle": "Un estudio boutique que crea productos digitales de alto rendimiento con precisión, propósito y una atención obsesiva al detalle.",
     "home.cta": "Ver Trabajos",
     "home.whatWeDo": "Lo que hacemos",
