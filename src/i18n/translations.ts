@@ -14,8 +14,8 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Index
     "home.badge": "Available for 2026",
-    "home.hero1": "Digital",
-    "home.hero2": "excellence.",
+    "home.hero1": "We are",
+    "home.hero2": "Siterix Studios.",
     "home.subtitle": "A boutique studio crafting high-performance digital products with precision, purpose, and an obsessive attention to detail.",
     "home.cta": "View Work",
     "home.whatWeDo": "What We Do",
