@@ -210,7 +210,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.rights": "© 2026 Siterix Studios. All rights reserved.",
 
     // Intro
-    "intro.tagline": "Digital Excellence",
+    "intro.tagline": "Crafted by Siterix Studios",
 
     // Features (pricing page)
     "pricing.f.customResponsive": "Custom responsive design",
