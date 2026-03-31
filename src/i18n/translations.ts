@@ -210,7 +210,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.rights": "© 2026 Siterix Studios. All rights reserved.",
 
     // Intro
-    "intro.tagline": "Digital Excellence",
+    "intro.tagline": "Crafted by Siterix Studios",
 
     // Features (pricing page)
     "pricing.f.customResponsive": "Custom responsive design",
@@ -445,7 +445,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.rights": "© 2026 Siterix Studios. כל הזכויות שמורות.",
 
     // Intro
-    "intro.tagline": "מצוינות דיגיטלית",
+    "intro.tagline": "נוצר על ידי Siterix Studios",
 
     // Pricing features
     "pricing.f.customResponsive": "עיצוב רספונסיבי מותאם",
@@ -680,7 +680,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.rights": "© 2026 Siterix Studios. Todos los derechos reservados.",
 
     // Intro
-    "intro.tagline": "Excelencia Digital",
+    "intro.tagline": "Creado por Siterix Studios",
 
     // Pricing features
     "pricing.f.customResponsive": "Diseño responsivo personalizado",
