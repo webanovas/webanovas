@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Sparkles } from "lucide-react";
 
-const words = ["WebAnovas", "Creative", "Digital", "Precision", "Innovation"];
+const words = ["Siterix", "Creative", "Digital", "Precision", "Innovation"];
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%";
 
 export function TextScramble() {
