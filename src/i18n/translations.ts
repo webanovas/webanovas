@@ -680,7 +680,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.rights": "© 2026 Siterix Studios. Todos los derechos reservados.",
 
     // Intro
-    "intro.tagline": "Creado por Siterix Studios",
+    "intro.tagline": "Design · Develop · Deploy",
 
     // Pricing features
     "pricing.f.customResponsive": "Diseño responsivo personalizado",
