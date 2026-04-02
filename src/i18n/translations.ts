@@ -15,7 +15,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     // Index
     "home.badge": "Available for 2026",
     "home.hero1": "Siterix",
-    "home.hero2": "Studios.",
+    "home.hero2": "Studio.",
     "home.subtitle": "A boutique studio crafting high-performance digital products with precision, purpose, and an obsessive attention to detail.",
     "home.cta": "View Work",
     "home.whatWeDo": "What We Do",
@@ -207,7 +207,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "lab.mobileExclusive": "Mobile Exclusive",
 
     // Footer
-    "footer.rights": "© 2026 Siterix Studios. All rights reserved.",
+    "footer.rights": "© 2026 Siterix Studio. All rights reserved.",
 
     // Intro
     "intro.tagline": "Design · Develop · Deploy",
@@ -250,7 +250,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     // Index
     "home.badge": "זמינים ל-2026",
     "home.hero1": "Siterix",
-    "home.hero2": "Studios.",
+    "home.hero2": "Studio.",
     "home.subtitle": "סטודיו בוטיק ליצירת מוצרים דיגיטליים בעלי ביצועים גבוהים, עם דיוק, מטרה ותשומת לב אובססיבית לפרטים.",
     "home.cta": "צפה בעבודות",
     "home.whatWeDo": "מה אנחנו עושים",
@@ -442,7 +442,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "lab.mobileExclusive": "בלעדי למובייל",
 
     // Footer
-    "footer.rights": "© 2026 Siterix Studios. כל הזכויות שמורות.",
+    "footer.rights": "© 2026 Siterix Studio. כל הזכויות שמורות.",
 
     // Intro
     "intro.tagline": "Design · Develop · Deploy",
@@ -485,7 +485,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     // Index
     "home.badge": "Disponible para 2026",
     "home.hero1": "Siterix",
-    "home.hero2": "Studios.",
+    "home.hero2": "Studio.",
     "home.subtitle": "Un estudio boutique que crea productos digitales de alto rendimiento con precisión, propósito y una atención obsesiva al detalle.",
     "home.cta": "Ver Trabajos",
     "home.whatWeDo": "Lo que hacemos",
@@ -677,7 +677,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "lab.mobileExclusive": "Exclusivo para Móvil",
 
     // Footer
-    "footer.rights": "© 2026 Siterix Studios. Todos los derechos reservados.",
+    "footer.rights": "© 2026 Siterix Studio. Todos los derechos reservados.",
 
     // Intro
     "intro.tagline": "Design · Develop · Deploy",

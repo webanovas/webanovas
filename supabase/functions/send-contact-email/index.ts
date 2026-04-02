@@ -67,7 +67,7 @@ serve(async (req) => {
           Authorization: `Bearer ${RESEND_API_KEY}`,
         },
         body: JSON.stringify({
-          from: "Siterix Studios <onboarding@resend.dev>",
+          from: "Siterix Studio <onboarding@resend.dev>",
           to: ["siterixstudios@gmail.com"],
           subject,
           text: body,
