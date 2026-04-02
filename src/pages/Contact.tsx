@@ -3,20 +3,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Footer } from "@/components/Footer";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader2, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
-
-const choiceKeyLabels: Record<string, string> = {
-  pages: "Pages",
-  design: "Design Level",
-  cms: "CMS",
-  auth: "Authentication",
-  backend: "Backend/Database",
-  ecommerce: "E-commerce",
-  timeline: "Timeline",
-};
+import { supabase } from "@/integrations/supabase/client";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export default function Contact() {
   const [searchParams] = useSearchParams();
@@ -24,6 +17,8 @@ export default function Contact() {
   const quizPrice = searchParams.get("price");
   const choicesRaw = searchParams.get("choices");
   const { t } = useLanguage();
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
 
   let choices: Record<string, string> | null = null;
   try {
@@ -32,18 +27,44 @@ export default function Contact() {
     choices = null;
   }
 
-  const buildEmailBody = (name: string, email: string, message: string) => {
-    let body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
-    if (quizPackage) {
-      body += `\n\n--- Quiz Result ---\nPackage: ${quizPackage} (${quizPrice})`;
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (sending || sent) return;
+
+    const form = e.target as HTMLFormElement;
+    const name = (form.elements.namedItem("name") as HTMLInputElement)?.value || "";
+    const email = (form.elements.namedItem("email") as HTMLInputElement)?.value || "";
+    const message = (form.elements.namedItem("message") as HTMLTextAreaElement)?.value || "";
+
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      toast.error("Please fill in all fields");
+      return;
     }
-    if (choices) {
-      body += "\n\n--- Quiz Choices ---";
-      for (const [key, value] of Object.entries(choices)) {
-        body += `\n${choiceKeyLabels[key] || key}: ${value}`;
-      }
+
+    setSending(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("send-contact-email", {
+        body: {
+          name,
+          email,
+          message,
+          package: quizPackage || undefined,
+          price: quizPrice || undefined,
+          choices: choices || undefined,
+        },
+      });
+
+      if (error) throw error;
+
+      setSent(true);
+      toast.success("Message sent successfully!");
+      form.reset();
+    } catch (err) {
+      console.error("Send error:", err);
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setSending(false);
     }
-    return body;
   };
 
   return (
@@ -73,16 +94,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          onSubmit={(e) => {
-            e.preventDefault();
-            const form = e.target as HTMLFormElement;
-            const name = (form.elements.namedItem("name") as HTMLInputElement)?.value || "";
-            const email = (form.elements.namedItem("email") as HTMLInputElement)?.value || "";
-            const message = (form.elements.namedItem("message") as HTMLTextAreaElement)?.value || "";
-            const subject = quizPackage ? `Project Inquiry — ${quizPackage}` : "New Project Inquiry";
-            const body = buildEmailBody(name, email, message);
-            window.location.href = `mailto:siterixstudios@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-          }}
+          onSubmit={handleSubmit}
         >
           {quizPackage && (
             <div className="p-4 rounded-xl border border-primary/30 bg-primary/5">
@@ -94,20 +106,34 @@ export default function Contact() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="name" className="text-xs uppercase tracking-[0.15em] font-body">{t("contact.name")}</Label>
-              <Input id="name" placeholder={t("contact.namePh")} className="bg-secondary/50 border-border/50 font-body" />
+              <Input id="name" placeholder={t("contact.namePh")} className="bg-secondary/50 border-border/50 font-body" disabled={sending} />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email" className="text-xs uppercase tracking-[0.15em] font-body">{t("contact.email")}</Label>
-              <Input id="email" type="email" placeholder={t("contact.emailPh")} className="bg-secondary/50 border-border/50 font-body" />
+              <Input id="email" type="email" placeholder={t("contact.emailPh")} className="bg-secondary/50 border-border/50 font-body" disabled={sending} />
             </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="message" className="text-xs uppercase tracking-[0.15em] font-body">{t("contact.message")}</Label>
-            <Textarea id="message" placeholder={t("contact.messagePh")} rows={5} className="bg-secondary/50 border-border/50 font-body" />
+            <Textarea id="message" placeholder={t("contact.messagePh")} rows={5} className="bg-secondary/50 border-border/50 font-body" disabled={sending} />
           </div>
-          <Button type="submit" size="lg" className="w-full rounded-full font-body gap-2 group">
-            {t("contact.send")}
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          <Button type="submit" size="lg" className="w-full rounded-full font-body gap-2 group" disabled={sending || sent}>
+            {sending ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                Sending...
+              </>
+            ) : sent ? (
+              <>
+                <CheckCircle className="w-4 h-4" />
+                Sent!
+              </>
+            ) : (
+              <>
+                {t("contact.send")}
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </>
+            )}
           </Button>
         </motion.form>
       </div>
