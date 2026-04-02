@@ -160,7 +160,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
                 className="h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
                 initial={{ width: 0 }}
                 animate={{ width: 80 }}
-                transition={{ delay: 1.3, duration: 0.8, ease: "easeOut" }}
+                transition={{ delay: 0.8, duration: 0.5, ease: "easeOut" }}
               />
             </motion.div>
 
