@@ -25,8 +25,8 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
       opacity: 1,
       rotateX: 0,
       transition: {
-        delay: 0.3 + i * 0.06,
-        duration: 0.7,
+        delay: 0.15 + i * 0.04,
+        duration: 0.5,
         ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
       },
     }),
