@@ -154,7 +154,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
                 className="w-1.5 h-1.5 rounded-full bg-primary"
                 initial={{ scale: 0 }}
                 animate={{ scale: [0, 1.5, 1] }}
-                transition={{ delay: 1.5, duration: 0.5 }}
+                transition={{ delay: 0.9, duration: 0.4 }}
               />
               <motion.div
                 className="h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
