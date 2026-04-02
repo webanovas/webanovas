@@ -33,7 +33,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
   };
 
   const siterixLetters = "Siterix".split("");
-  const studiosLetters = "Studios".split("");
+  const studiosLetters = "Studio".split("");
 
   return (
     <AnimatePresence>
