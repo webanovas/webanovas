@@ -142,7 +142,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
               className="flex items-center gap-3 mt-2"
               initial={{ opacity: 0, width: 0 }}
               animate={{ opacity: 1, width: "auto" }}
-              transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
+              transition={{ delay: 0.7, duration: 0.5, ease: "easeOut" }}
             >
               <motion.div
                 className="h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
