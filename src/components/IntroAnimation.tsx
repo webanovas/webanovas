@@ -7,11 +7,11 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
   const { t } = useLanguage();
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase("reveal"), 1500);
+    const t1 = setTimeout(() => setPhase("reveal"), 1800);
     const t2 = setTimeout(() => {
       setPhase("done");
       onComplete();
-    }, 2200);
+    }, 2600);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
