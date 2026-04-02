@@ -188,7 +188,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
                 }}
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
-                transition={{ delay: 1.7, duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ delay: 1.1, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
               />
             </motion.div>
           </div>
