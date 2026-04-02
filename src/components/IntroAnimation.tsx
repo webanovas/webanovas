@@ -7,11 +7,11 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
   const { t } = useLanguage();
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase("reveal"), 1500);
+    const t1 = setTimeout(() => setPhase("reveal"), 1800);
     const t2 = setTimeout(() => {
       setPhase("done");
       onComplete();
-    }, 2200);
+    }, 2600);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
@@ -25,8 +25,8 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
       opacity: 1,
       rotateX: 0,
       transition: {
-        delay: 0.3 + i * 0.06,
-        duration: 0.7,
+        delay: 0.15 + i * 0.04,
+        duration: 0.5,
         ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
       },
     }),
@@ -142,25 +142,25 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
               className="flex items-center gap-3 mt-2"
               initial={{ opacity: 0, width: 0 }}
               animate={{ opacity: 1, width: "auto" }}
-              transition={{ delay: 1.2, duration: 0.8, ease: "easeOut" }}
+              transition={{ delay: 0.7, duration: 0.5, ease: "easeOut" }}
             >
               <motion.div
                 className="h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
                 initial={{ width: 0 }}
                 animate={{ width: 80 }}
-                transition={{ delay: 1.3, duration: 0.8, ease: "easeOut" }}
+                transition={{ delay: 0.8, duration: 0.5, ease: "easeOut" }}
               />
               <motion.div
                 className="w-1.5 h-1.5 rounded-full bg-primary"
                 initial={{ scale: 0 }}
                 animate={{ scale: [0, 1.5, 1] }}
-                transition={{ delay: 1.5, duration: 0.5 }}
+                transition={{ delay: 0.9, duration: 0.4 }}
               />
               <motion.div
                 className="h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
                 initial={{ width: 0 }}
                 animate={{ width: 80 }}
-                transition={{ delay: 1.3, duration: 0.8, ease: "easeOut" }}
+                transition={{ delay: 0.8, duration: 0.5, ease: "easeOut" }}
               />
             </motion.div>
 
@@ -169,7 +169,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
               className="text-[10px] md:text-xs uppercase tracking-[0.5em] text-muted-foreground font-body"
               initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ delay: 1.4, duration: 0.8, ease: "easeOut" }}
+              transition={{ delay: 0.9, duration: 0.5, ease: "easeOut" }}
             >
               {t("intro.tagline")}
             </motion.p>
@@ -179,7 +179,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
               className="w-32 h-[2px] bg-border/30 mt-3 rounded-full overflow-hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.6 }}
+              transition={{ delay: 1.0 }}
             >
               <motion.div
                 className="h-full rounded-full"
@@ -188,7 +188,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
                 }}
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
-                transition={{ delay: 1.7, duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ delay: 1.1, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
               />
             </motion.div>
           </div>
