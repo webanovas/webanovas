@@ -179,7 +179,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
               className="w-32 h-[2px] bg-border/30 mt-3 rounded-full overflow-hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.6 }}
+              transition={{ delay: 1.0 }}
             >
               <motion.div
                 className="h-full rounded-full"
