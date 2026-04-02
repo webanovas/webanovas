@@ -169,7 +169,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
               className="text-[10px] md:text-xs uppercase tracking-[0.5em] text-muted-foreground font-body"
               initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ delay: 1.4, duration: 0.8, ease: "easeOut" }}
+              transition={{ delay: 0.9, duration: 0.5, ease: "easeOut" }}
             >
               {t("intro.tagline")}
             </motion.p>
