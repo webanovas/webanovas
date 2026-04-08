@@ -5,7 +5,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     // Nav
     "nav.home": "Home",
     "nav.services": "Services",
-    "nav.work": "Work",
+    "nav.work": "Case Study",
     "nav.process": "Process",
     "nav.about": "About",
     "nav.pricing": "Pricing",
