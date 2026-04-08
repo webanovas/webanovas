@@ -46,9 +46,6 @@ const Index = () => {
 
           <motion.h1
             className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold tracking-tight leading-[0.9] mb-8"
-            data-latin-ui="true"
-            dir="ltr"
-            lang="en"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
