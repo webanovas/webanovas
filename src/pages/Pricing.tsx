@@ -118,7 +118,7 @@ export default function Pricing() {
                 <Button asChild className={`w-full rounded-full gap-2 group ${pkg.popular ? "" : "variant-outline bg-secondary/50 border border-border/50 text-foreground hover:bg-secondary"}`}>
                   <Link to={`/contact?package=${encodeURIComponent(pkg.title)}&price=${encodeURIComponent(pkg.price)}`}>
                     {t("pricing.getQuote")}
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
                   </Link>
                 </Button>
               </div>
@@ -140,13 +140,13 @@ export default function Pricing() {
             <Button asChild size="lg" className="rounded-full px-8 gap-2 group">
               <Link to="/quiz">
                 {t("pricing.takeQuiz")}
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="rounded-full px-8 gap-2 group">
               <Link to="/contact">
                 {t("pricing.contactUs")}
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
               </Link>
             </Button>
           </div>

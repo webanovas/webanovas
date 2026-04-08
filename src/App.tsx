@@ -12,6 +12,7 @@ import { PageTransition } from "@/components/PageTransition";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { LanguageProvider, useLanguage } from "@/i18n/LanguageContext";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { LanguageHint } from "@/components/LanguageHint";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import Work from "./pages/Work";
@@ -64,6 +65,7 @@ function AppContent() {
           <>
             <FloatingNav />
             <LanguageSwitcher />
+            <LanguageHint />
           </>
         )}
         <AnimatedRoutes />

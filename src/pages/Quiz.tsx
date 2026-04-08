@@ -219,7 +219,7 @@ export default function Quiz() {
                     disabled={currentQ === 0}
                     className="gap-2 font-body rounded-full"
                   >
-                    <ArrowLeft className="w-4 h-4" />
+                    <ArrowLeft className="w-4 h-4 rtl-flip" />
                     {t("quiz.back")}
                   </Button>
                   <Button
@@ -228,7 +228,7 @@ export default function Quiz() {
                     className="gap-2 font-body rounded-full"
                   >
                     {currentQ === questions.length - 1 ? t("quiz.seeResult") : t("quiz.next")}
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 rtl-flip" />
                   </Button>
                 </div>
               </div>
@@ -281,7 +281,7 @@ export default function Quiz() {
                     <Link to={`/contact?package=${encodeURIComponent(result.label)}&price=${encodeURIComponent(result.price)}&choices=${buildChoicesParam()}`}>
                       <MessageCircle className="w-4 h-4" />
                       {t("quiz.letsTalk")}
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
                     </Link>
                   </Button>
                   <Button
