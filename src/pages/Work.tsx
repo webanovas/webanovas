@@ -105,7 +105,7 @@ export default function Work() {
                 <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-body block mb-1">
                   {item.label}
                 </span>
-                <span className="text-sm font-body font-medium text-foreground">{item.value}</span>
+                <span className="text-xs sm:text-sm font-body font-medium text-foreground break-all">{item.value}</span>
               </div>
             </div>
           ))}
