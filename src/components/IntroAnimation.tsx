@@ -40,6 +40,9 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
       {phase !== "done" && (
         <motion.div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-background overflow-hidden"
+          dir="ltr"
+          data-latin-ui="true"
+          lang="en"
           exit={{ opacity: 0, scale: 1.05 }}
           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
@@ -98,7 +101,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
             style={{ transformOrigin: "0 120px" }}
           />
 
-          <div className="relative flex flex-col items-center gap-5">
+          <div className="relative flex flex-col items-center gap-5" data-latin-ui="true" lang="en">
             {/* Letter-by-letter title */}
             <div className="overflow-hidden perspective-[800px]" dir="ltr">
               <div className="flex items-baseline justify-center" dir="ltr">
@@ -167,6 +170,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
             {/* Tagline with typewriter feel */}
             <motion.p
               className="text-[10px] md:text-xs uppercase tracking-[0.5em] text-muted-foreground font-body"
+              dir="ltr"
               initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ delay: 0.9, duration: 0.5, ease: "easeOut" }}

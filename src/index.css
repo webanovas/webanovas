@@ -91,6 +91,31 @@
 [dir="rtl"] .group-hover\:translate-x-1:is(.group:hover *) {
   --tw-translate-x: -0.25rem !important;
 }
+[dir="rtl"] [data-latin-ui] {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+[dir="rtl"] [data-latin-ui] .font-display {
+  font-family: var(--font-display);
+}
+[dir="rtl"] [data-latin-ui] .font-body {
+  font-family: var(--font-body);
+}
+[dir="rtl"] [data-latin-ui] .tracking-tight {
+  letter-spacing: -0.025em !important;
+}
+[dir="rtl"] [data-latin-ui] .tracking-\[0\.5em\] {
+  letter-spacing: 0.5em !important;
+}
+[dir="rtl"] [data-latin-ui] .tracking-\[0\.3em\],
+[dir="rtl"] [data-latin-ui] .tracking-\[0\.2em\],
+[dir="rtl"] [data-latin-ui] .tracking-\[0\.15em\],
+[dir="rtl"] [data-latin-ui] .tracking-\[0\.1em\] {
+  letter-spacing: inherit !important;
+}
+[dir="rtl"] [data-latin-ui] .text-gradient {
+  font-style: italic;
+}
 
 @layer base {
   * {
