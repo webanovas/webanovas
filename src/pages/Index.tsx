@@ -9,8 +9,7 @@ const Index = () => {
   const { t } = useLanguage();
 
   const stats = [
-    { value: "50+", label: t("home.stat1") },
-    { value: "99%", label: t("home.stat2") },
+    { value: "100%", label: t("home.stat2") },
     { value: "<1s", label: t("home.stat3") },
     { value: "24/7", label: t("home.stat4") },
   ];
@@ -53,7 +52,7 @@ const Index = () => {
           >
             {t("home.hero1")}
             <br />
-            <span className="text-gradient italic">{t("home.hero2")}</span>
+            <span className="text-gradient italic" dir="ltr">{t("home.hero2")}</span>
           </motion.h1>
 
           <motion.div
@@ -76,14 +75,14 @@ const Index = () => {
 
         {/* Stats */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-px mb-32 md:mb-40 border border-border/40 rounded-xl overflow-hidden"
+          className="grid grid-cols-3 gap-px mb-32 md:mb-40 border border-border/40 rounded-xl overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
           {stats.map((stat) => (
             <div key={stat.label} className="bg-card/60 p-8 text-center">
-              <div className="text-3xl md:text-4xl font-display font-bold text-gradient mb-2">{stat.value}</div>
+              <div className="text-3xl md:text-4xl font-display font-bold text-gradient mb-2" dir="ltr">{stat.value}</div>
               <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">{stat.label}</div>
             </div>
           ))}
