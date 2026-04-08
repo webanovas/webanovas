@@ -7,6 +7,8 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+const GATEWAY_URL = "https://connector-gateway.lovable.dev/resend";
+
 const ContactSchema = z.object({
   name: z.string().min(1).max(200),
   email: z.string().email().max(255),
@@ -56,38 +58,32 @@ serve(async (req) => {
 
     const subject = pkg ? `Project Inquiry — ${pkg}` : "New Project Inquiry";
 
-    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-    
-    if (RESEND_API_KEY) {
-      // Use Resend if available
-      const res = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${RESEND_API_KEY}`,
-        },
-        body: JSON.stringify({
-          from: "Siterix Studio <onboarding@resend.dev>",
-          to: ["siterixstudios@gmail.com"],
-          subject,
-          text: body,
-          reply_to: email,
-        }),
-      });
+    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
 
-      if (!res.ok) {
-        const err = await res.text();
-        console.error("Resend error:", err);
-        throw new Error(`Email send failed: ${res.status}`);
-      }
-    } else {
-      // Fallback: log the email (no email service configured)
-      console.log("=== EMAIL (no provider configured) ===");
-      console.log("To: siterixstudios@gmail.com");
-      console.log("Subject:", subject);
-      console.log("Body:", body);
-      console.log("Reply-To:", email);
-      console.log("=== END ===");
+    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+    if (!RESEND_API_KEY) throw new Error("RESEND_API_KEY is not configured");
+
+    const res = await fetch(`${GATEWAY_URL}/emails`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${LOVABLE_API_KEY}`,
+        "X-Connection-Api-Key": RESEND_API_KEY,
+      },
+      body: JSON.stringify({
+        from: "Siterix Studio <onboarding@resend.dev>",
+        to: ["siterixstudios@gmail.com"],
+        subject,
+        text: body,
+        reply_to: email,
+      }),
+    });
+
+    if (!res.ok) {
+      const err = await res.text();
+      console.error("Resend error:", err);
+      throw new Error(`Email send failed: ${res.status}`);
     }
 
     return new Response(
