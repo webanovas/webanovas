@@ -84,6 +84,13 @@
 [dir="rtl"] .section-line {
   order: 1;
 }
+/* Flip arrows and arrow hover animations in RTL */
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+[dir="rtl"] .group-hover\:translate-x-1:is(.group:hover *) {
+  --tw-translate-x: -0.25rem !important;
+}
 
 @layer base {
   * {
