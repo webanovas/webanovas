@@ -40,6 +40,9 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
       {phase !== "done" && (
         <motion.div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-background overflow-hidden"
+          dir="ltr"
+          data-latin-ui="true"
+          lang="en"
           exit={{ opacity: 0, scale: 1.05 }}
           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
