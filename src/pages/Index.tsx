@@ -52,7 +52,7 @@ const Index = () => {
           >
             {t("home.hero1")}
             <br />
-            <span className="text-gradient italic">{t("home.hero2")}</span>
+            <span className="text-gradient italic" dir="ltr">{t("home.hero2")}</span>
           </motion.h1>
 
           <motion.div
@@ -82,7 +82,7 @@ const Index = () => {
         >
           {stats.map((stat) => (
             <div key={stat.label} className="bg-card/60 p-8 text-center">
-              <div className="text-3xl md:text-4xl font-display font-bold text-gradient mb-2">{stat.value}</div>
+              <div className="text-3xl md:text-4xl font-display font-bold text-gradient mb-2" dir="ltr">{stat.value}</div>
               <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-body">{stat.label}</div>
             </div>
           ))}
