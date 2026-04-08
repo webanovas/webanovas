@@ -281,7 +281,7 @@ export default function Quiz() {
                     <Link to={`/contact?package=${encodeURIComponent(result.label)}&price=${encodeURIComponent(result.price)}&choices=${buildChoicesParam()}`}>
                       <MessageCircle className="w-4 h-4" />
                       {t("quiz.letsTalk")}
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
                     </Link>
                   </Button>
                   <Button

@@ -68,7 +68,7 @@ const Index = () => {
             <Button asChild size="lg" className="rounded-full px-8 gap-3 group w-fit">
               <Link to="/work">
                 {t("home.cta")}
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
               </Link>
             </Button>
           </motion.div>
