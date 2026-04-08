@@ -100,8 +100,8 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
 
           <div className="relative flex flex-col items-center gap-5">
             {/* Letter-by-letter title */}
-            <div className="overflow-hidden perspective-[800px]">
-              <div className="flex items-baseline justify-center">
+            <div className="overflow-hidden perspective-[800px]" dir="ltr">
+              <div className="flex items-baseline justify-center" dir="ltr">
                 {siterixLetters.map((letter, i) => (
                   <motion.span
                     key={`s-${i}`}
