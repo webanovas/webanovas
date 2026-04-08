@@ -104,6 +104,15 @@
 [dir="rtl"] [data-latin-ui] .tracking-tight {
   letter-spacing: -0.025em !important;
 }
+[dir="rtl"] [data-latin-ui] .tracking-\[0\.5em\] {
+  letter-spacing: 0.5em !important;
+}
+[dir="rtl"] [data-latin-ui] .tracking-\[0\.3em\],
+[dir="rtl"] [data-latin-ui] .tracking-\[0\.2em\],
+[dir="rtl"] [data-latin-ui] .tracking-\[0\.15em\],
+[dir="rtl"] [data-latin-ui] .tracking-\[0\.1em\] {
+  letter-spacing: inherit !important;
+}
 [dir="rtl"] [data-latin-ui] .text-gradient {
   font-style: italic;
 }
