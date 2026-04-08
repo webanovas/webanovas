@@ -11,14 +11,8 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | null>(null);
 
 function getInitialLang(): Lang {
-  // Check if user previously selected a language
   const saved = localStorage.getItem("lang");
   if (saved && (saved === "en" || saved === "he" || saved === "es")) return saved;
-
-  // Auto-detect Hebrew for .co.il domain
-  const hostname = window.location.hostname;
-  if (hostname.endsWith(".co.il")) return "he";
-
   return "en";
 }
 
