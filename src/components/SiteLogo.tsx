@@ -42,11 +42,11 @@ export function HeroLogoBackground() {
         src={siterixIcon}
         alt=""
         draggable={false}
-        className={`w-[450px] h-[450px] md:w-[550px] md:h-[550px] lg:w-[650px] lg:h-[650px] object-cover opacity-[0.12] ${
+        className={`w-[350px] h-[350px] md:w-[450px] md:h-[450px] lg:w-[520px] lg:h-[520px] object-contain opacity-[0.15] ${
           isRtl ? "-translate-x-1/4" : "translate-x-1/4"
         }`}
         initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.12, scale: 1 }}
+        animate={{ opacity: 0.15, scale: 1 }}
         transition={{ delay: 0.4, duration: 1.2, ease: "easeOut" }}
       />
     </div>
