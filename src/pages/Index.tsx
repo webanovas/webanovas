@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { HeroLogoBackground } from "@/components/SiteLogo";
+import siterixIcon from "@/assets/siterix-s-icon.png";
 
 const Index = () => {
   const { t } = useLanguage();
@@ -32,7 +32,6 @@ const Index = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <HeroLogoBackground />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -46,16 +45,26 @@ const Index = () => {
             </div>
           </motion.div>
 
-          <motion.h1
-            className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold tracking-tight leading-[0.9] mb-8"
+          <motion.div
+            className="flex items-center gap-4 md:gap-6 mb-8"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            {t("home.hero1")}
-            <br />
-            <span className="text-gradient italic" dir="ltr">{t("home.hero2")}</span>
-          </motion.h1>
+            <motion.img
+              src={siterixIcon}
+              alt=""
+              className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-2xl object-cover flex-shrink-0 opacity-80"
+              initial={{ opacity: 0, scale: 0.7, rotate: -10 }}
+              animate={{ opacity: 0.8, scale: 1, rotate: 0 }}
+              transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+            />
+            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold tracking-tight leading-[0.9]">
+              {t("home.hero1")}
+              <br />
+              <span className="text-gradient italic" dir="ltr">{t("home.hero2")}</span>
+            </h1>
+          </motion.div>
 
           <motion.div
             className="flex flex-col md:flex-row md:items-end md:justify-between gap-8"
