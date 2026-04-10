@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import siterixIcon from "@/assets/siterix-s-icon.png";
 
 export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
   const [phase, setPhase] = useState<"logo" | "reveal" | "done">("logo");
