@@ -95,7 +95,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
             className="absolute w-1.5 h-1.5 rounded-full bg-primary/40"
             initial={{ rotate: 0 }}
             animate={{ rotate: 360 }}
-            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{ transformOrigin: "0 120px" }}
           />
 
