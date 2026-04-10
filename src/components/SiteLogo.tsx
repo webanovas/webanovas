@@ -7,39 +7,38 @@ export function SiteLogo() {
   const location = useLocation();
   const isHome = location.pathname === "/";
 
-  const heroOpacity = useTransform(scrollY, [0, 300], [1, 0]);
-  const heroScale = useTransform(scrollY, [0, 300], [1, 0.6]);
-  const cornerOpacity = useTransform(scrollY, [200, 400], [0, 1]);
+  const cornerOpacity = useTransform(scrollY, [100, 300], [0, 1]);
 
   return (
-    <>
-      {/* Large decorative logo on homepage hero */}
-      {isHome && (
-        <motion.div
-          className="fixed top-8 left-1/2 -translate-x-1/2 z-40 pointer-events-none select-none"
-          style={{ opacity: heroOpacity, scale: heroScale }}
-        >
-          <div className="w-14 h-14 md:w-20 md:h-20 rounded-full overflow-hidden opacity-60">
-            <img src={siterixIcon} alt="" className="w-full h-full object-cover" draggable={false} />
-          </div>
-        </motion.div>
-      )}
-
-      {/* Small corner logo - clickable, leads to about */}
-      <motion.div
-        className="fixed top-5 left-5 z-50"
-        style={isHome ? { opacity: cornerOpacity } : undefined}
-        initial={!isHome ? { opacity: 0, scale: 0.8 } : undefined}
-        animate={!isHome ? { opacity: 1, scale: 1 } : undefined}
-        transition={{ duration: 0.3 }}
+    <motion.div
+      className="fixed top-5 left-5 z-50"
+      style={isHome ? { opacity: cornerOpacity } : undefined}
+      initial={!isHome ? { opacity: 0, scale: 0.8 } : undefined}
+      animate={!isHome ? { opacity: 1, scale: 1 } : undefined}
+      transition={{ duration: 0.3 }}
+    >
+      <Link
+        to="/about"
+        className="block w-10 h-10 rounded-full overflow-hidden border border-border/40 bg-card/80 backdrop-blur-xl shadow-lg hover:scale-110 transition-transform duration-200"
       >
-        <Link
-          to="/about"
-          className="block w-10 h-10 rounded-full overflow-hidden border border-border/40 bg-card/80 backdrop-blur-xl shadow-lg hover:scale-110 transition-transform duration-200"
-        >
-          <img src={siterixIcon} alt="Siterix Studios" className="w-full h-full object-cover" />
-        </Link>
-      </motion.div>
-    </>
+        <img src={siterixIcon} alt="Siterix Studios" className="w-full h-full object-cover" />
+      </Link>
+    </motion.div>
+  );
+}
+
+export function HeroLogoBackground() {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+      <motion.img
+        src={siterixIcon}
+        alt=""
+        draggable={false}
+        className="w-[400px] h-[400px] md:w-[600px] md:h-[600px] lg:w-[700px] lg:h-[700px] object-cover opacity-[0.07]"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 0.07, scale: 1 }}
+        transition={{ delay: 0.4, duration: 1.2, ease: "easeOut" }}
+      />
+    </div>
   );
 }
