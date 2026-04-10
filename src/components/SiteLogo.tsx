@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import siterixIcon from "@/assets/siterix-s-icon.png";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export function SiteLogo() {
   const { scrollY } = useScroll();
