@@ -100,6 +100,15 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
           />
 
           <div className="relative flex flex-col items-center gap-5">
+            {/* Logo icon */}
+            <motion.div
+              className="w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-primary/30 shadow-lg shadow-primary/20 mb-2"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: [0, 1.2, 1], opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <img src={siterixIcon} alt="Siterix Studios" className="w-full h-full object-cover" />
+            </motion.div>
             {/* Letter-by-letter title */}
             <div className="overflow-hidden perspective-[800px]" dir="ltr">
               <div className="flex items-baseline justify-center" dir="ltr">
