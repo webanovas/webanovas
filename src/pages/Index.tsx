@@ -54,7 +54,7 @@ const Index = () => {
             <motion.img
               src={siterixIcon}
               alt=""
-              className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-2xl object-cover flex-shrink-0 opacity-80"
+              className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-full object-cover flex-shrink-0 opacity-80 border-2 border-primary/30 shadow-lg shadow-primary/20"
               initial={{ opacity: 0, scale: 0.7, rotate: -10 }}
               animate={{ opacity: 0.8, scale: 1, rotate: 0 }}
               transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
