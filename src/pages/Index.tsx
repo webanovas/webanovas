@@ -33,7 +33,6 @@ const Index = () => {
           transition={{ duration: 0.8 }}
         >
           <HeroLogoBackground />
-        >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
