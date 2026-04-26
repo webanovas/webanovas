@@ -33,9 +33,22 @@ const Index = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: -10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-8"
+          >
+            <img
+              src={siterixIcon}
+              alt="Siterix Studios"
+              className="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_0_25px_hsl(var(--primary)/0.25)]"
+            />
+          </motion.div>
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
           >
             <div className="flex items-center gap-3 mb-8">
               <div className="section-line" />
@@ -45,26 +58,16 @@ const Index = () => {
             </div>
           </motion.div>
 
-          <motion.div
-            className="flex items-center gap-4 md:gap-6 mb-8"
+          <motion.h1
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold tracking-tight leading-[0.9] mb-8"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ delay: 0.4, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <motion.img
-              src={siterixIcon}
-              alt=""
-              className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-2xl object-cover flex-shrink-0 opacity-80"
-              initial={{ opacity: 0, scale: 0.7, rotate: -10 }}
-              animate={{ opacity: 0.8, scale: 1, rotate: 0 }}
-              transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-            />
-            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold tracking-tight leading-[0.9]">
-              {t("home.hero1")}
-              <br />
-              <span className="text-gradient italic" dir="ltr">{t("home.hero2")}</span>
-            </h1>
-          </motion.div>
+            {t("home.hero1")}
+            <br />
+            <span className="text-gradient italic" dir="ltr">{t("home.hero2")}</span>
+          </motion.h1>
 
           <motion.div
             className="flex flex-col md:flex-row md:items-end md:justify-between gap-8"
