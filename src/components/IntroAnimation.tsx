@@ -12,7 +12,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
     const t2 = setTimeout(() => {
       setPhase("done");
       onComplete();
-    }, 2600);
+    }, 3000);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
