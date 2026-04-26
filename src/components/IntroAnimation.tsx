@@ -74,14 +74,65 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
             transition={{ delay: 0.5, duration: 1.5, ease: "easeOut" }}
           />
 
-          {/* Orbiting particle */}
-          <motion.div
-            className="absolute w-1.5 h-1.5 rounded-full bg-primary/40"
-            initial={{ rotate: 0 }}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 2.2, ease: "easeInOut" }}
-            style={{ transformOrigin: "0 120px" }}
-          />
+          {/* Orbiting particle + burst (in front of logo) */}
+          <div className="absolute z-20 pointer-events-none">
+            <motion.div
+              className="relative"
+              initial={{ rotate: 0 }}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 2.2, ease: "easeInOut" }}
+              style={{ width: 0, height: 0 }}
+            >
+              <motion.div
+                className="absolute w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_20px_6px_hsl(var(--primary)/0.7)]"
+                style={{ top: -140, left: -5 }}
+                animate={{ scale: [1, 1, 1.6, 0] }}
+                transition={{ duration: 2.6, times: [0, 0.84, 0.92, 1], ease: "easeOut" }}
+              />
+            </motion.div>
+
+            {/* Burst rings + sparkles after orbit completes (~2.2s) */}
+            <motion.div
+              className="absolute -translate-x-1/2 -translate-y-1/2 left-0 top-0"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2.2 }}
+            >
+              {/* Expanding ring */}
+              <motion.div
+                className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-primary"
+                style={{ top: -140, left: 0, width: 20, height: 20 }}
+                initial={{ scale: 0, opacity: 0.9 }}
+                animate={{ scale: [0, 6], opacity: [0.9, 0] }}
+                transition={{ delay: 2.2, duration: 0.7, ease: "easeOut" }}
+              />
+              <motion.div
+                className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/70"
+                style={{ top: -140, left: 0, width: 20, height: 20 }}
+                initial={{ scale: 0, opacity: 0.7 }}
+                animate={{ scale: [0, 9], opacity: [0.7, 0] }}
+                transition={{ delay: 2.3, duration: 0.8, ease: "easeOut" }}
+              />
+
+              {/* Sparkles flying outward */}
+              {Array.from({ length: 10 }).map((_, i) => {
+                const angle = (i / 10) * Math.PI * 2;
+                const dist = 60;
+                const x = Math.cos(angle) * dist;
+                const y = Math.sin(angle) * dist;
+                return (
+                  <motion.div
+                    key={`spark-${i}`}
+                    className="absolute w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_2px_hsl(var(--primary)/0.8)]"
+                    style={{ top: -140, left: 0 }}
+                    initial={{ x: 0, y: 0, opacity: 0, scale: 0 }}
+                    animate={{ x, y, opacity: [0, 1, 0], scale: [0, 1, 0.2] }}
+                    transition={{ delay: 2.2, duration: 0.8, ease: "easeOut" }}
+                  />
+                );
+              })}
+            </motion.div>
+          </div>
 
           <div className="relative flex flex-col items-center gap-5">
             {/* Logo (contains the brand name) */}
