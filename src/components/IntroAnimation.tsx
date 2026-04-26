@@ -12,7 +12,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
     const t2 = setTimeout(() => {
       setPhase("done");
       onComplete();
-    }, 2600);
+    }, 3000);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
@@ -80,14 +80,14 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
               className="relative"
               initial={{ rotate: 0 }}
               animate={{ rotate: 360 }}
-              transition={{ duration: 2.2, ease: "easeInOut" }}
+              transition={{ duration: 1.6, ease: "easeInOut" }}
               style={{ width: 0, height: 0 }}
             >
               <motion.div
                 className="absolute w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_20px_6px_hsl(var(--primary)/0.7)]"
                 style={{ top: -140, left: -5 }}
                 animate={{ scale: [1, 1, 1.6, 0] }}
-                transition={{ duration: 2.6, times: [0, 0.84, 0.92, 1], ease: "easeOut" }}
+                transition={{ duration: 2.0, times: [0, 0.8, 0.9, 1], ease: "easeOut" }}
               />
             </motion.div>
 
@@ -96,7 +96,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
               className="absolute -translate-x-1/2 -translate-y-1/2 left-0 top-0"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 2.2 }}
+              transition={{ delay: 1.6 }}
             >
               {/* Expanding ring */}
               <motion.div
@@ -104,14 +104,14 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
                 style={{ top: -140, left: 0, width: 20, height: 20 }}
                 initial={{ scale: 0, opacity: 0.9 }}
                 animate={{ scale: [0, 6], opacity: [0.9, 0] }}
-                transition={{ delay: 2.2, duration: 0.7, ease: "easeOut" }}
+                transition={{ delay: 1.6, duration: 0.7, ease: "easeOut" }}
               />
               <motion.div
                 className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/70"
                 style={{ top: -140, left: 0, width: 20, height: 20 }}
                 initial={{ scale: 0, opacity: 0.7 }}
                 animate={{ scale: [0, 9], opacity: [0.7, 0] }}
-                transition={{ delay: 2.3, duration: 0.8, ease: "easeOut" }}
+                transition={{ delay: 1.7, duration: 0.8, ease: "easeOut" }}
               />
 
               {/* Sparkles flying outward */}
@@ -127,7 +127,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
                     style={{ top: -140, left: 0 }}
                     initial={{ x: 0, y: 0, opacity: 0, scale: 0 }}
                     animate={{ x, y, opacity: [0, 1, 0], scale: [0, 1, 0.2] }}
-                    transition={{ delay: 2.2, duration: 0.8, ease: "easeOut" }}
+                    transition={{ delay: 1.6, duration: 0.9, ease: "easeOut" }}
                   />
                 );
               })}
