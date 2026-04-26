@@ -19,22 +19,6 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
     };
   }, [onComplete]);
 
-  const letterVariants = {
-    hidden: { y: 80, opacity: 0, rotateX: 90 },
-    visible: (i: number) => ({
-      y: 0,
-      opacity: 1,
-      rotateX: 0,
-      transition: {
-        delay: 0.15 + i * 0.04,
-        duration: 0.5,
-        ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
-      },
-    }),
-  };
-
-  const siterixLetters = "Siterix".split("");
-  const studiosLetters = "Studio".split("");
 
   return (
     <AnimatePresence>
@@ -100,52 +84,15 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
           />
 
           <div className="relative flex flex-col items-center gap-5">
-            {/* Logo icon */}
+            {/* Logo (contains the brand name) */}
             <motion.img
               src={siterixIcon}
               alt="Siterix Studios"
-              className="w-28 h-28 md:w-36 md:h-36 object-contain mb-2 drop-shadow-[0_0_30px_hsl(var(--primary)/0.35)]"
+              className="w-44 h-44 md:w-60 md:h-60 object-contain drop-shadow-[0_0_40px_hsl(var(--primary)/0.4)]"
               initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: [0, 1.2, 1], opacity: 1 }}
-              transition={{ delay: 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              animate={{ scale: [0, 1.15, 1], opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             />
-            {/* Letter-by-letter title */}
-            <div className="overflow-hidden perspective-[800px]" dir="ltr">
-              <div className="flex items-baseline justify-center" dir="ltr">
-                {siterixLetters.map((letter, i) => (
-                  <motion.span
-                    key={`s-${i}`}
-                    className="text-4xl md:text-7xl font-display font-bold tracking-tight inline-block"
-                    custom={i}
-                    variants={letterVariants}
-                    initial="hidden"
-                    animate="visible"
-                  >
-                    {letter}
-                  </motion.span>
-                ))}
-                <motion.span
-                  className="w-3 md:w-5 inline-block"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.6 }}
-                >
-                  {" "}
-                </motion.span>
-                {studiosLetters.map((letter, i) => (
-                  <motion.span
-                    key={`t-${i}`}
-                    className="text-4xl md:text-7xl font-display font-bold tracking-tight text-gradient italic inline-block"
-                    custom={i + siterixLetters.length + 1}
-                    variants={letterVariants}
-                    initial="hidden"
-                    animate="visible"
-                  >
-                    {letter}
-                  </motion.span>
-                ))}
-              </div>
-            </div>
 
             {/* Decorative line with dot */}
             <motion.div
