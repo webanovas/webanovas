@@ -20,9 +20,9 @@ export function SiteLogo() {
     >
       <Link
         to="/about"
-        className="block w-10 h-10 rounded-full overflow-hidden border border-border/40 bg-card/80 backdrop-blur-xl shadow-lg hover:scale-110 transition-transform duration-200"
+        className="block w-11 h-11 hover:scale-110 transition-transform duration-200"
       >
-        <img src={siterixIcon} alt="Siterix Studios" className="w-full h-full object-cover" />
+        <img src={siterixIcon} alt="Siterix Studios" className="w-full h-full object-contain" />
       </Link>
     </motion.div>
   );
