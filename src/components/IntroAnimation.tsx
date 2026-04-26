@@ -96,7 +96,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
               className="absolute -translate-x-1/2 -translate-y-1/2 left-0 top-0"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 2.2 }}
+              transition={{ delay: 1.6 }}
             >
               {/* Expanding ring */}
               <motion.div
