@@ -258,7 +258,7 @@ export default function Work() {
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="rounded-full px-8 gap-2 group">
-              <a href="https://yogabamoshava.co.il" target="_blank" rel="noopener noreferrer">
+              <a href="https://yogabamoshava.co.il/siterix" target="_blank" rel="noopener noreferrer">
                 {isHe ? "צפו באתר החי" : "View Live Site"}
                 <ExternalLink className="w-4 h-4" />
               </a>
