@@ -10,6 +10,7 @@ import { IntroAnimation } from "@/components/IntroAnimation";
 import { CursorGlow } from "@/components/CursorGlow";
 import { PageTransition } from "@/components/PageTransition";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { LanguageProvider, useLanguage } from "@/i18n/LanguageContext";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { LanguageHint } from "@/components/LanguageHint";
@@ -64,6 +65,7 @@ function AppContent() {
         <CursorGlow />
         {introComplete && (
           <>
+            <ScrollProgress />
             <SiteLogo />
             <FloatingNav />
             <LanguageSwitcher />
