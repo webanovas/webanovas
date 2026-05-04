@@ -208,7 +208,7 @@ const Index = () => {
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.45, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto mb-12 md:mb-16 relative w-[180px] h-[180px] md:w-[220px] md:h-[220px] overflow-hidden rounded-sm bg-foreground"
+            className="mx-auto mb-12 md:mb-16 relative w-[180px] h-[180px] md:w-[220px] md:h-[220px] overflow-hidden rounded-sm bg-card border border-border/40"
           >
             <div
               className="absolute top-0 right-0 w-[42%] h-[42%] bg-terracotta"
@@ -222,7 +222,7 @@ const Index = () => {
               <span className="text-primary text-[11px] md:text-xs font-body font-semibold tracking-[0.4em]">
                 SITERIX
               </span>
-              <div className="w-10 h-px bg-background/40" />
+              <div className="w-10 h-px bg-foreground/30" />
               <span className="text-primary text-[11px] md:text-xs font-body font-semibold tracking-[0.4em]">
                 STUDIO
               </span>
@@ -262,7 +262,7 @@ const Index = () => {
               asChild
               variant="outline"
               size="lg"
-              className="rounded-full px-7 gap-2 group border-foreground/20 hover:bg-foreground hover:text-background"
+              className="rounded-full px-7 gap-2 group border-border hover:bg-foreground hover:text-background"
             >
               <a href="#work">
                 {t("home.cta")}
