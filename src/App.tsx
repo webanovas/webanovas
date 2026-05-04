@@ -15,15 +15,10 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { LanguageHint } from "@/components/LanguageHint";
 import { SiteLogo } from "@/components/SiteLogo";
 import Index from "./pages/Index";
-import Services from "./pages/Services";
-import Work from "./pages/Work";
-import ProcessPage from "./pages/Process";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Pricing from "./pages/Pricing";
 import Lab from "./pages/Lab";
-import Quiz from "./pages/Quiz";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import { Navigate } from "react-router-dom";
 
 const queryClient = new QueryClient();
 
@@ -34,13 +29,13 @@ function AnimatedRoutes() {
       <PageTransition key={location.pathname}>
         <Routes location={location}>
           <Route path="/" element={<Index />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/work" element={<Work />} />
-          <Route path="/process" element={<ProcessPage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/services" element={<Navigate to="/" state={{ scrollTo: "services" }} replace />} />
+          <Route path="/work" element={<Navigate to="/" state={{ scrollTo: "work" }} replace />} />
+          <Route path="/process" element={<Navigate to="/" state={{ scrollTo: "process" }} replace />} />
+          <Route path="/about" element={<Navigate to="/" state={{ scrollTo: "about" }} replace />} />
+          <Route path="/pricing" element={<Navigate to="/" state={{ scrollTo: "pricing" }} replace />} />
+          <Route path="/quiz" element={<Navigate to="/contact" replace />} />
           <Route path="/lab" element={<Lab />} />
-          <Route path="/quiz" element={<Quiz />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
