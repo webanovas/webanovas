@@ -64,7 +64,6 @@ const Index = () => {
       image: workYoga,
       bg: "bg-peach-soft",
       accent: "bg-peach",
-      href: "/work",
     },
     {
       title: "Vanguard Estates",
