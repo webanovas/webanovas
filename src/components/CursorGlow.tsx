@@ -33,7 +33,7 @@ export function CursorGlow() {
         translateY: "-50%",
         width: isHoveringCard ? 300 : 200,
         height: isHoveringCard ? 300 : 200,
-        background: `radial-gradient(circle, hsl(217 91% 60% / ${isHoveringCard ? 0.12 : 0.06}) 0%, transparent 70%)`,
+        background: `radial-gradient(circle, hsl(var(--primary) / ${isHoveringCard ? 0.18 : 0.10}) 0%, transparent 70%)`,
         transition: "width 0.4s, height 0.4s, background 0.4s",
       }}
     />

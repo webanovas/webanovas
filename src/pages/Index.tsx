@@ -10,10 +10,6 @@ import {
   CheckCircle,
   Mail,
   MapPin,
-  ExternalLink,
-  Zap,
-  Users,
-  Globe,
 } from "lucide-react";
 import { Reveal } from "@/components/RevealText";
 import { Input } from "@/components/ui/input";
@@ -23,7 +19,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import siterixIcon from "@/assets/siterix-s-icon.png";
-import mockupImg from "@/assets/case-shira-mockup.png";
+import { PortfolioGrid } from "@/components/PortfolioGrid";
 
 const Index = () => {
   const { t, lang } = useLanguage();
@@ -172,87 +168,121 @@ const Index = () => {
   );
 
   return (
-    <main className="min-h-screen overflow-x-hidden">
+    <main className="min-h-screen overflow-x-hidden grain">
       {/* ===================== HERO ===================== */}
       <section
         id="home"
         ref={heroRef}
-        className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-32"
+        className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-28 pb-20"
       >
         <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
-          className="max-w-5xl mx-auto w-full relative z-10"
+          className="max-w-6xl mx-auto w-full relative z-10"
         >
+          {/* Top meta bar */}
+          <div className="flex items-center justify-between mb-12 md:mb-16">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="flex items-center gap-3"
+            >
+              <div className="w-8 h-px bg-foreground/40" />
+              <span className="text-[10px] font-body uppercase tracking-[0.35em] text-muted-foreground">
+                {t("home.badge")}
+              </span>
+            </motion.div>
+            <motion.span
+              dir="ltr"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="text-[10px] font-body uppercase tracking-[0.35em] text-muted-foreground"
+            >
+              EST. 2024 — TLV
+            </motion.span>
+          </div>
+
+          {/* Geometric square logo, mishelcodearch-inspired */}
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="mb-10"
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.45, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="mx-auto mb-12 md:mb-16 relative w-[180px] h-[180px] md:w-[220px] md:h-[220px] overflow-hidden rounded-sm bg-foreground"
           >
-            <img
-              src={siterixIcon}
-              alt="Siterix Studios"
-              className="w-12 h-12 object-contain opacity-90"
+            <div
+              className="absolute top-0 right-0 w-[42%] h-[42%] bg-terracotta"
+              style={{ clipPath: "polygon(100% 0, 0 0, 100% 100%)" }}
             />
+            <div
+              className="absolute bottom-0 left-0 w-[35%] h-[35%] bg-olive"
+              style={{ clipPath: "polygon(0 100%, 0 0, 100% 100%)" }}
+            />
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3" dir="ltr">
+              <span className="text-primary text-[11px] md:text-xs font-body font-semibold tracking-[0.4em]">
+                SITERIX
+              </span>
+              <div className="w-10 h-px bg-background/40" />
+              <span className="text-primary text-[11px] md:text-xs font-body font-semibold tracking-[0.4em]">
+                STUDIO
+              </span>
+            </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          >
-            <SectionLabel>{t("home.badge")}</SectionLabel>
-          </motion.div>
-
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-display font-medium tracking-[-0.02em] leading-[1.02] mb-10 max-w-4xl">
-            <Reveal delay={0.35}>{t("home.hero1")}</Reveal>{" "}
-            <Reveal delay={0.45} className="text-gradient italic font-semibold">
+          {/* Hero headline */}
+          <h1 className="text-center text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] font-display font-medium tracking-[-0.025em] leading-[0.98] mb-10 max-w-5xl mx-auto">
+            <Reveal delay={0.55}>{t("home.hero1")}</Reveal>{" "}
+            <Reveal delay={0.7} className="text-gradient italic font-semibold">
               {t("home.hero2")}
             </Reveal>
           </h1>
 
-          <motion.div
-            className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 max-w-4xl"
+          <motion.p
+            className="text-center text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed font-body mb-10"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.85, duration: 0.6 }}
+            transition={{ delay: 0.95, duration: 0.6 }}
           >
-            <p className="text-base md:text-lg text-muted-foreground max-w-md leading-relaxed font-body">
-              {t("home.subtitle")}
-            </p>
-            <div className="flex gap-3 flex-wrap">
-              <Button asChild size="lg" className="rounded-full px-7 gap-2 group">
-                <a href="#contact">
-                  {t("nav.startProject")}
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
-                </a>
-              </Button>
-              <Button
-                asChild
-                variant="ghost"
-                size="lg"
-                className="rounded-full px-7 gap-2 group hover:bg-secondary/40"
-              >
-                <a href="#work">
-                  {t("home.cta")}
-                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl-flip" />
-                </a>
-              </Button>
-            </div>
+            {t("home.subtitle")}
+          </motion.p>
+
+          <motion.div
+            className="flex justify-center gap-3 flex-wrap"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.05, duration: 0.6 }}
+          >
+            <Button asChild size="lg" className="rounded-full px-7 gap-2 group">
+              <a href="#contact">
+                {t("nav.startProject")}
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
+              </a>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="rounded-full px-7 gap-2 group border-foreground/20 hover:bg-foreground hover:text-background"
+            >
+              <a href="#work">
+                {t("home.cta")}
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl-flip" />
+              </a>
+            </Button>
           </motion.div>
         </motion.div>
 
         {/* Subtle scroll indicator */}
         <motion.div
           dir="ltr"
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-muted-foreground/60"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-muted-foreground/70"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4, duration: 0.6 }}
         >
           <span className="text-[10px] uppercase tracking-[0.4em] font-body">Scroll</span>
           <motion.div
-            className="w-px h-10 bg-gradient-to-b from-muted-foreground/40 to-transparent"
+            className="w-px h-10 bg-gradient-to-b from-foreground/40 to-transparent"
             animate={{ scaleY: [0.3, 1, 0.3] }}
             transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
             style={{ originY: 0 }}
@@ -346,69 +376,42 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ===================== WORK / CASE STUDY ===================== */}
-      <section id="work" className="px-6 md:px-12 py-24 md:py-32">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-16">
-            <SectionLabel>{isHe ? "מקרה בוחן" : "Case Study"}</SectionLabel>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium tracking-[-0.02em] leading-[1.05]">
-              <Reveal>{isHe ? "יוגה" : "Yoga"}</Reveal>{" "}
-              <Reveal delay={0.1} className="text-gradient italic font-semibold">
-                {isHe ? "במושבה" : "BaMoshava"}
-              </Reveal>
-            </h2>
+      {/* ===================== WORK / PORTFOLIO ===================== */}
+      <section id="work" className="px-6 md:px-12 py-24 md:py-32 bg-secondary/40">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+            <div>
+              <SectionLabel>{isHe ? "עבודות נבחרות" : "Selected Work"}</SectionLabel>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium tracking-[-0.02em] leading-[1.02]">
+                <Reveal>{isHe ? "פרויקטים" : "Projects"}</Reveal>{" "}
+                <Reveal delay={0.1} className="text-gradient italic font-semibold">
+                  {isHe ? "שלנו" : "we shipped"}
+                </Reveal>
+              </h2>
+            </div>
+            <span dir="ltr" className="text-[10px] font-body uppercase tracking-[0.3em] text-muted-foreground">
+              06 PROJECTS
+            </span>
           </div>
+
+          <PortfolioGrid />
 
           <motion.div
-            className="rounded-xl overflow-hidden mb-14 border border-border/40"
-            initial={{ opacity: 0, y: 30 }}
+            className="mt-16 pt-10 border-t border-foreground/10 text-center"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
           >
-            <img src={mockupImg} alt="Yoga BaMoshava" className="w-full" />
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            {[
-              { icon: Users, text: isHe ? "עלייה משמעותית בפניות" : "Significant lift in inquiries" },
-              { icon: Zap, text: isHe ? "טעינה מתחת לשנייה" : "Sub-second load time" },
-              { icon: Globe, text: isHe ? "דומיין מותאם אישית" : "Custom domain & branding" },
-            ].map((r, i) => (
-              <motion.div
-                key={i}
-                className="flex items-center gap-3 py-5 border-t border-border/40"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <r.icon className="w-4 h-4 text-primary shrink-0" />
-                <span className="text-sm font-body text-muted-foreground leading-relaxed">
-                  {r.text}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            <Button asChild size="lg" variant="outline" className="rounded-full px-7 gap-2 group">
-              <a
-                href="https://yogabamoshava.co.il/siterix"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {isHe ? "צפו באתר החי" : "View Live Site"}
-                <ExternalLink className="w-4 h-4" />
+            <p className="text-sm text-muted-foreground font-body mb-5">
+              {isHe ? "רוצה אתר ברמה הזו?" : "Want a site at this level?"}
+            </p>
+            <Button asChild size="lg" className="rounded-full px-7 gap-2 group">
+              <a href="#contact">
+                {isHe ? "בואו נדבר" : "Let's talk"}
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
               </a>
             </Button>
-            <Button asChild size="lg" variant="ghost" className="rounded-full px-7 gap-2 group">
-              <Link to="/work">
-                {isHe ? "המקרה המלא" : "Read full case study"}
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
-              </Link>
-            </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
 

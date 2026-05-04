@@ -6,44 +6,50 @@
 
 @layer base {
   :root {
-    --background: 220 20% 4%;
-    --foreground: 210 20% 95%;
+    /* Warm cream background, deep navy ink, Electric Blue accent.
+       Inspired by mishelcodearch — but with our brand color. */
+    --background: 42 38% 95%;          /* #F6F1E6 cream */
+    --foreground: 218 45% 14%;         /* #1A2540 deep navy ink */
 
-    --card: 220 15% 7%;
-    --card-foreground: 210 20% 95%;
+    --card: 42 30% 92%;
+    --card-foreground: 218 45% 14%;
 
-    --popover: 220 15% 7%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 42 38% 97%;
+    --popover-foreground: 218 45% 14%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 218 90% 52%;            /* Electric Blue */
+    --primary-foreground: 42 50% 97%;
 
-    --secondary: 220 15% 11%;
-    --secondary-foreground: 210 20% 95%;
+    --secondary: 42 25% 88%;           /* warm sand */
+    --secondary-foreground: 218 45% 14%;
 
-    --muted: 220 15% 11%;
-    --muted-foreground: 215 10% 45%;
+    --muted: 42 25% 90%;
+    --muted-foreground: 218 18% 38%;   /* slate-navy for body */
 
-    --accent: 217 91% 60%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 218 90% 52%;
+    --accent-foreground: 42 50% 97%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    /* Earthy accents (used sparingly, like the inspiration triangles) */
+    --terracotta: 14 55% 55%;
+    --olive: 80 18% 42%;
 
-    --border: 220 10% 14%;
-    --input: 220 10% 14%;
-    --ring: 217 91% 60%;
+    --destructive: 0 70% 48%;
+    --destructive-foreground: 42 50% 97%;
+
+    --border: 218 20% 80%;
+    --input: 218 20% 80%;
+    --ring: 218 90% 52%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 220 20% 4%;
-    --sidebar-foreground: 210 20% 95%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 15% 11%;
-    --sidebar-accent-foreground: 210 20% 95%;
-    --sidebar-border: 220 10% 14%;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-background: 42 38% 95%;
+    --sidebar-foreground: 218 45% 14%;
+    --sidebar-primary: 218 90% 52%;
+    --sidebar-primary-foreground: 42 50% 97%;
+    --sidebar-accent: 42 25% 88%;
+    --sidebar-accent-foreground: 218 45% 14%;
+    --sidebar-border: 218 20% 80%;
+    --sidebar-ring: 218 90% 52%;
 
     --font-display: 'Playfair Display', Georgia, serif;
     --font-body: 'Space Grotesk', system-ui, sans-serif;
@@ -73,6 +79,7 @@
   letter-spacing: 0 !important;
 }
 [dir="rtl"] .tracking-\[0\.3em\],
+[dir="rtl"] .tracking-\[0\.25em\],
 [dir="rtl"] .tracking-\[0\.2em\],
 [dir="rtl"] .tracking-\[0\.15em\],
 [dir="rtl"] .tracking-\[0\.1em\] {
@@ -81,10 +88,6 @@
 [dir="rtl"] .text-gradient {
   font-style: normal;
 }
-[dir="rtl"] .section-line {
-  order: 1;
-}
-/* Flip arrows and arrow hover animations in RTL */
 [dir="rtl"] .rtl-flip {
   transform: scaleX(-1);
 }
@@ -105,17 +108,14 @@
   h1, h2, h3 {
     font-family: var(--font-display);
   }
+
+  ::selection {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
 }
 
 @layer utilities {
-  .glass-card {
-    @apply bg-card/80 backdrop-blur-xl border border-border/40 rounded-xl;
-    transition: border-color 0.4s ease, box-shadow 0.4s ease;
-  }
-  .glass-card:hover {
-    border-color: hsl(var(--primary) / 0.25);
-    box-shadow: 0 0 40px -12px hsl(var(--primary) / 0.15);
-  }
   .font-display {
     font-family: var(--font-display);
   }
@@ -124,8 +124,13 @@
   }
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(210 80% 75%));
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(218 80% 65%));
   }
+  .text-terracotta { color: hsl(var(--terracotta)); }
+  .bg-terracotta { background-color: hsl(var(--terracotta)); }
+  .text-olive { color: hsl(var(--olive)); }
+  .bg-olive { background-color: hsl(var(--olive)); }
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -133,7 +138,16 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
-  .section-line {
-    @apply w-12 h-px bg-primary/40;
+
+  /* Subtle grain overlay to add warmth like editorial print */
+  .grain::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 }
