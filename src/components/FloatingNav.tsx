@@ -62,7 +62,7 @@ function DesktopNav() {
 
   return (
     <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
-      <div className="flex items-center gap-1 rounded-full bg-card/90 backdrop-blur-xl border border-border/40 px-2 py-2 shadow-2xl shadow-black/40">
+      <div className="flex items-center gap-1 rounded-full bg-foreground/95 backdrop-blur-xl border border-foreground/20 px-2 py-2 shadow-2xl shadow-foreground/20">
         {links.map((link) => {
           const isActive = isHome && active === link.id;
           return (
@@ -73,7 +73,7 @@ function DesktopNav() {
                 "px-4 py-2 rounded-full text-sm font-body font-medium transition-all duration-200 whitespace-nowrap",
                 isActive
                   ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+                  : "text-background/70 hover:text-background"
               )}
             >
               {link.label}
@@ -87,7 +87,7 @@ function DesktopNav() {
               "px-4 py-2 rounded-full text-sm font-body font-medium transition-all duration-200 whitespace-nowrap",
               isActive
                 ? "bg-primary text-primary-foreground"
-                : "text-muted-foreground hover:text-foreground"
+                : "text-background/70 hover:text-background"
             )
           }
         >
@@ -95,7 +95,7 @@ function DesktopNav() {
         </NavLink>
         <button
           onClick={() => smoothScrollTo("contact", navigate, isHome)}
-          className="px-5 py-2 rounded-full text-sm font-body font-medium ml-1 whitespace-nowrap bg-foreground text-background hover:bg-foreground/90 transition-all duration-200"
+          className="px-5 py-2 rounded-full text-sm font-body font-medium ml-1 whitespace-nowrap bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200"
         >
           {t("nav.startProject")}
         </button>
