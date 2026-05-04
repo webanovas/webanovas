@@ -29,13 +29,13 @@ function AnimatedRoutes() {
       <PageTransition key={location.pathname}>
         <Routes location={location}>
           <Route path="/" element={<Index />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/work" element={<Work />} />
-          <Route path="/process" element={<ProcessPage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/services" element={<Navigate to="/" state={{ scrollTo: "services" }} replace />} />
+          <Route path="/work" element={<Navigate to="/" state={{ scrollTo: "work" }} replace />} />
+          <Route path="/process" element={<Navigate to="/" state={{ scrollTo: "process" }} replace />} />
+          <Route path="/about" element={<Navigate to="/" state={{ scrollTo: "about" }} replace />} />
+          <Route path="/pricing" element={<Navigate to="/" state={{ scrollTo: "pricing" }} replace />} />
+          <Route path="/quiz" element={<Navigate to="/contact" replace />} />
           <Route path="/lab" element={<Lab />} />
-          <Route path="/quiz" element={<Quiz />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
