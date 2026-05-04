@@ -10,10 +10,6 @@ import {
   CheckCircle,
   Mail,
   MapPin,
-  ExternalLink,
-  Zap,
-  Users,
-  Globe,
 } from "lucide-react";
 import { Reveal } from "@/components/RevealText";
 import { Input } from "@/components/ui/input";
@@ -23,7 +19,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import siterixIcon from "@/assets/siterix-s-icon.png";
-import mockupImg from "@/assets/case-shira-mockup.png";
+import { PortfolioGrid } from "@/components/PortfolioGrid";
 
 const Index = () => {
   const { t, lang } = useLanguage();
