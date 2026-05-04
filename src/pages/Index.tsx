@@ -271,6 +271,59 @@ const Index = () => {
         </div>
       </section>
 
+      {/* ============== SERVICES — lavender soft ============== */}
+      <section id="services" className="relative bg-lavender-soft py-28 md:py-40 overflow-hidden">
+        <div className="absolute -top-10 -right-20 w-80 h-80 bg-lavender blob opacity-50 animate-float" />
+        <div className="absolute bottom-10 -left-10 w-60 h-60 bg-mint blob-2 opacity-40 animate-wobble" />
+
+        <div className="relative max-w-6xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+            className="mb-16 md:mb-20"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <Layers className="w-5 h-5 text-primary" />
+              <span className="text-xs font-body uppercase tracking-[0.3em] text-foreground/60">
+                {t("services.badge")}
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-display font-light tracking-tight mb-6">
+              {t("services.title")}<span className="italic text-gradient">.</span>
+            </h2>
+            <p className="text-lg text-foreground/70 max-w-xl font-body leading-relaxed">
+              {t("services.subtitle")}
+            </p>
+          </motion.div>
+
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { num: "01", cat: t("services.s1.cat"), title: t("services.s1.title"), desc: t("services.s1.desc"), tags: [t("services.s1.d1"), t("services.s1.d2"), t("services.s1.d3")] },
+              { num: "02", cat: t("services.s2.cat"), title: t("services.s2.title"), desc: t("services.s2.desc"), tags: [t("services.s2.d1"), t("services.s2.d2"), t("services.s2.d3")] },
+              { num: "03", cat: t("services.s3.cat"), title: t("services.s3.title"), desc: t("services.s3.desc"), tags: [t("services.s3.d1"), t("services.s3.d2"), t("services.s3.d3")] },
+            ].map((s) => (
+              <StaggerItem key={s.num}>
+                <div className="bg-card rounded-3xl p-8 md:p-10 h-full border border-border/40 shadow-xl shadow-foreground/5 hover:-translate-y-1 transition-transform duration-500">
+                  <span className="text-5xl font-display font-light text-foreground/15 leading-none block mb-4" dir="ltr">{s.num}</span>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-primary font-body mb-3 block">{s.cat}</span>
+                  <h3 className="text-2xl md:text-3xl font-display font-medium mb-4">{s.title}</h3>
+                  <p className="text-sm text-foreground/70 font-body leading-relaxed mb-6">{s.desc}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {s.tags.map((tg) => (
+                      <span key={tg} className="text-[10px] uppercase tracking-[0.15em] text-foreground/60 bg-background/60 rounded-full px-3 py-1 font-body">
+                        {tg}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerChildren>
+        </div>
+      </section>
+
       {/* ============== Work Zigzag ============== */}
       <section id="work" className="relative">
         <div className="bg-foreground text-background py-20 md:py-28 overflow-hidden">
@@ -369,59 +422,6 @@ const Index = () => {
             </div>
           );
         })}
-      </section>
-
-      {/* ============== SERVICES — lavender soft ============== */}
-      <section id="services" className="relative bg-lavender-soft py-28 md:py-40 overflow-hidden">
-        <div className="absolute -top-10 -right-20 w-80 h-80 bg-lavender blob opacity-50 animate-float" />
-        <div className="absolute bottom-10 -left-10 w-60 h-60 bg-mint blob-2 opacity-40 animate-wobble" />
-
-        <div className="relative max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7 }}
-            className="mb-16 md:mb-20"
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <Layers className="w-5 h-5 text-primary" />
-              <span className="text-xs font-body uppercase tracking-[0.3em] text-foreground/60">
-                {t("services.badge")}
-              </span>
-            </div>
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-display font-light tracking-tight mb-6">
-              {t("services.title")}<span className="italic text-gradient">.</span>
-            </h2>
-            <p className="text-lg text-foreground/70 max-w-xl font-body leading-relaxed">
-              {t("services.subtitle")}
-            </p>
-          </motion.div>
-
-          <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { num: "01", cat: t("services.s1.cat"), title: t("services.s1.title"), desc: t("services.s1.desc"), tags: [t("services.s1.d1"), t("services.s1.d2"), t("services.s1.d3")] },
-              { num: "02", cat: t("services.s2.cat"), title: t("services.s2.title"), desc: t("services.s2.desc"), tags: [t("services.s2.d1"), t("services.s2.d2"), t("services.s2.d3")] },
-              { num: "03", cat: t("services.s3.cat"), title: t("services.s3.title"), desc: t("services.s3.desc"), tags: [t("services.s3.d1"), t("services.s3.d2"), t("services.s3.d3")] },
-            ].map((s) => (
-              <StaggerItem key={s.num}>
-                <div className="bg-card rounded-3xl p-8 md:p-10 h-full border border-border/40 shadow-xl shadow-foreground/5 hover:-translate-y-1 transition-transform duration-500">
-                  <span className="text-5xl font-display font-light text-foreground/15 leading-none block mb-4" dir="ltr">{s.num}</span>
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-primary font-body mb-3 block">{s.cat}</span>
-                  <h3 className="text-2xl md:text-3xl font-display font-medium mb-4">{s.title}</h3>
-                  <p className="text-sm text-foreground/70 font-body leading-relaxed mb-6">{s.desc}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {s.tags.map((tg) => (
-                      <span key={tg} className="text-[10px] uppercase tracking-[0.15em] text-foreground/60 bg-background/60 rounded-full px-3 py-1 font-body">
-                        {tg}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerChildren>
-        </div>
       </section>
 
       {/* ============== PROCESS — cream ============== */}
