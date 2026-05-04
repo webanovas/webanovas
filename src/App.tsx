@@ -15,15 +15,10 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { LanguageHint } from "@/components/LanguageHint";
 import { SiteLogo } from "@/components/SiteLogo";
 import Index from "./pages/Index";
-import Services from "./pages/Services";
-import Work from "./pages/Work";
-import ProcessPage from "./pages/Process";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Pricing from "./pages/Pricing";
 import Lab from "./pages/Lab";
-import Quiz from "./pages/Quiz";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import { Navigate } from "react-router-dom";
 
 const queryClient = new QueryClient();
 
