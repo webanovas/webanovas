@@ -2,7 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight, Sparkles, Heart, Zap, Star } from "lucide-react";
+import { ArrowRight, Sparkles, Heart, Zap, Star, Check, Compass, Layers, Rocket } from "lucide-react";
+import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
+import { AnimatedProgress } from "@/components/AnimatedProgress";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Footer } from "@/components/Footer";
 
