@@ -104,7 +104,7 @@ const Index = () => {
   return (
     <main className="relative">
       {/* ============== HERO — cream ============== */}
-      <section ref={heroRef} className="relative min-h-screen bg-cream overflow-hidden flex items-center">
+      <section id="home" ref={heroRef} className="relative min-h-screen bg-cream overflow-hidden flex items-center">
         {/* Floating blobs */}
         <motion.div
           className="absolute -top-20 -left-20 w-96 h-96 bg-peach blob opacity-60 animate-float"
