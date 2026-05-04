@@ -376,69 +376,42 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ===================== WORK / CASE STUDY ===================== */}
-      <section id="work" className="px-6 md:px-12 py-24 md:py-32">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-16">
-            <SectionLabel>{isHe ? "מקרה בוחן" : "Case Study"}</SectionLabel>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium tracking-[-0.02em] leading-[1.05]">
-              <Reveal>{isHe ? "יוגה" : "Yoga"}</Reveal>{" "}
-              <Reveal delay={0.1} className="text-gradient italic font-semibold">
-                {isHe ? "במושבה" : "BaMoshava"}
-              </Reveal>
-            </h2>
+      {/* ===================== WORK / PORTFOLIO ===================== */}
+      <section id="work" className="px-6 md:px-12 py-24 md:py-32 bg-secondary/40">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+            <div>
+              <SectionLabel>{isHe ? "עבודות נבחרות" : "Selected Work"}</SectionLabel>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium tracking-[-0.02em] leading-[1.02]">
+                <Reveal>{isHe ? "פרויקטים" : "Projects"}</Reveal>{" "}
+                <Reveal delay={0.1} className="text-gradient italic font-semibold">
+                  {isHe ? "שלנו" : "we shipped"}
+                </Reveal>
+              </h2>
+            </div>
+            <span dir="ltr" className="text-[10px] font-body uppercase tracking-[0.3em] text-muted-foreground">
+              06 PROJECTS
+            </span>
           </div>
+
+          <PortfolioGrid />
 
           <motion.div
-            className="rounded-xl overflow-hidden mb-14 border border-border/40"
-            initial={{ opacity: 0, y: 30 }}
+            className="mt-16 pt-10 border-t border-foreground/10 text-center"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
           >
-            <img src={mockupImg} alt="Yoga BaMoshava" className="w-full" />
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            {[
-              { icon: Users, text: isHe ? "עלייה משמעותית בפניות" : "Significant lift in inquiries" },
-              { icon: Zap, text: isHe ? "טעינה מתחת לשנייה" : "Sub-second load time" },
-              { icon: Globe, text: isHe ? "דומיין מותאם אישית" : "Custom domain & branding" },
-            ].map((r, i) => (
-              <motion.div
-                key={i}
-                className="flex items-center gap-3 py-5 border-t border-border/40"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <r.icon className="w-4 h-4 text-primary shrink-0" />
-                <span className="text-sm font-body text-muted-foreground leading-relaxed">
-                  {r.text}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            <Button asChild size="lg" variant="outline" className="rounded-full px-7 gap-2 group">
-              <a
-                href="https://yogabamoshava.co.il/siterix"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {isHe ? "צפו באתר החי" : "View Live Site"}
-                <ExternalLink className="w-4 h-4" />
+            <p className="text-sm text-muted-foreground font-body mb-5">
+              {isHe ? "רוצה אתר ברמה הזו?" : "Want a site at this level?"}
+            </p>
+            <Button asChild size="lg" className="rounded-full px-7 gap-2 group">
+              <a href="#contact">
+                {isHe ? "בואו נדבר" : "Let's talk"}
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
               </a>
             </Button>
-            <Button asChild size="lg" variant="ghost" className="rounded-full px-7 gap-2 group">
-              <Link to="/work">
-                {isHe ? "המקרה המלא" : "Read full case study"}
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
-              </Link>
-            </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
