@@ -28,6 +28,23 @@ type Project = {
 const Index = () => {
   const { t, lang } = useLanguage();
   const isHe = lang === "he";
+  const location = useLocation();
+
+  // Scroll to a section if navigated from another route with state.scrollTo
+  useEffect(() => {
+    const target = (location.state as { scrollTo?: string } | null)?.scrollTo;
+    if (!target) return;
+    const tryScroll = () => {
+      const el = document.getElementById(target);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - 8;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+    };
+    // wait for layout
+    const r1 = requestAnimationFrame(() => requestAnimationFrame(tryScroll));
+    return () => cancelAnimationFrame(r1);
+  }, [location.state]);
 
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: heroProgress } = useScroll({
