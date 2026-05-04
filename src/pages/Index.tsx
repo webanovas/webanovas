@@ -168,87 +168,121 @@ const Index = () => {
   );
 
   return (
-    <main className="min-h-screen overflow-x-hidden">
+    <main className="min-h-screen overflow-x-hidden grain">
       {/* ===================== HERO ===================== */}
       <section
         id="home"
         ref={heroRef}
-        className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-32"
+        className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-28 pb-20"
       >
         <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
-          className="max-w-5xl mx-auto w-full relative z-10"
+          className="max-w-6xl mx-auto w-full relative z-10"
         >
+          {/* Top meta bar */}
+          <div className="flex items-center justify-between mb-12 md:mb-16">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="flex items-center gap-3"
+            >
+              <div className="w-8 h-px bg-foreground/40" />
+              <span className="text-[10px] font-body uppercase tracking-[0.35em] text-muted-foreground">
+                {t("home.badge")}
+              </span>
+            </motion.div>
+            <motion.span
+              dir="ltr"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="text-[10px] font-body uppercase tracking-[0.35em] text-muted-foreground"
+            >
+              EST. 2024 — TLV
+            </motion.span>
+          </div>
+
+          {/* Geometric square logo, mishelcodearch-inspired */}
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="mb-10"
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.45, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="mx-auto mb-12 md:mb-16 relative w-[180px] h-[180px] md:w-[220px] md:h-[220px] overflow-hidden rounded-sm bg-foreground"
           >
-            <img
-              src={siterixIcon}
-              alt="Siterix Studios"
-              className="w-12 h-12 object-contain opacity-90"
+            <div
+              className="absolute top-0 right-0 w-[42%] h-[42%] bg-terracotta"
+              style={{ clipPath: "polygon(100% 0, 0 0, 100% 100%)" }}
             />
+            <div
+              className="absolute bottom-0 left-0 w-[35%] h-[35%] bg-olive"
+              style={{ clipPath: "polygon(0 100%, 0 0, 100% 100%)" }}
+            />
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3" dir="ltr">
+              <span className="text-primary text-[11px] md:text-xs font-body font-semibold tracking-[0.4em]">
+                SITERIX
+              </span>
+              <div className="w-10 h-px bg-background/40" />
+              <span className="text-primary text-[11px] md:text-xs font-body font-semibold tracking-[0.4em]">
+                STUDIO
+              </span>
+            </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          >
-            <SectionLabel>{t("home.badge")}</SectionLabel>
-          </motion.div>
-
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-display font-medium tracking-[-0.02em] leading-[1.02] mb-10 max-w-4xl">
-            <Reveal delay={0.35}>{t("home.hero1")}</Reveal>{" "}
-            <Reveal delay={0.45} className="text-gradient italic font-semibold">
+          {/* Hero headline */}
+          <h1 className="text-center text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] font-display font-medium tracking-[-0.025em] leading-[0.98] mb-10 max-w-5xl mx-auto">
+            <Reveal delay={0.55}>{t("home.hero1")}</Reveal>{" "}
+            <Reveal delay={0.7} className="text-gradient italic font-semibold">
               {t("home.hero2")}
             </Reveal>
           </h1>
 
-          <motion.div
-            className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 max-w-4xl"
+          <motion.p
+            className="text-center text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed font-body mb-10"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.85, duration: 0.6 }}
+            transition={{ delay: 0.95, duration: 0.6 }}
           >
-            <p className="text-base md:text-lg text-muted-foreground max-w-md leading-relaxed font-body">
-              {t("home.subtitle")}
-            </p>
-            <div className="flex gap-3 flex-wrap">
-              <Button asChild size="lg" className="rounded-full px-7 gap-2 group">
-                <a href="#contact">
-                  {t("nav.startProject")}
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
-                </a>
-              </Button>
-              <Button
-                asChild
-                variant="ghost"
-                size="lg"
-                className="rounded-full px-7 gap-2 group hover:bg-secondary/40"
-              >
-                <a href="#work">
-                  {t("home.cta")}
-                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl-flip" />
-                </a>
-              </Button>
-            </div>
+            {t("home.subtitle")}
+          </motion.p>
+
+          <motion.div
+            className="flex justify-center gap-3 flex-wrap"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.05, duration: 0.6 }}
+          >
+            <Button asChild size="lg" className="rounded-full px-7 gap-2 group">
+              <a href="#contact">
+                {t("nav.startProject")}
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
+              </a>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="rounded-full px-7 gap-2 group border-foreground/20 hover:bg-foreground hover:text-background"
+            >
+              <a href="#work">
+                {t("home.cta")}
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl-flip" />
+              </a>
+            </Button>
           </motion.div>
         </motion.div>
 
         {/* Subtle scroll indicator */}
         <motion.div
           dir="ltr"
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-muted-foreground/60"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-muted-foreground/70"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4, duration: 0.6 }}
         >
           <span className="text-[10px] uppercase tracking-[0.4em] font-body">Scroll</span>
           <motion.div
-            className="w-px h-10 bg-gradient-to-b from-muted-foreground/40 to-transparent"
+            className="w-px h-10 bg-gradient-to-b from-foreground/40 to-transparent"
             animate={{ scaleY: [0.3, 1, 0.3] }}
             transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
             style={{ originY: 0 }}
