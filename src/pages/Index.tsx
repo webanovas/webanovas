@@ -158,11 +158,16 @@ const Index = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
             >
-              <Button asChild size="lg" className="rounded-full px-8 gap-3 group bg-foreground text-background hover:bg-foreground/90">
-                <a href="#work">
-                  {isHe ? "צפו בעבודות" : "See the work"}
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
-                </a>
+              <Button
+                size="lg"
+                className="rounded-full px-8 gap-3 group bg-foreground text-background hover:bg-foreground/90"
+                onClick={() => {
+                  const el = document.getElementById("work");
+                  el?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+              >
+                {isHe ? "צפו בעבודות" : "See the work"}
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
               </Button>
             </motion.div>
           </div>
