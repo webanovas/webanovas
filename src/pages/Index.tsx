@@ -355,6 +355,247 @@ const Index = () => {
         })}
       </section>
 
+      {/* ============== SERVICES — lavender soft ============== */}
+      <section id="services" className="relative bg-lavender-soft py-28 md:py-40 overflow-hidden">
+        <div className="absolute -top-10 -right-20 w-80 h-80 bg-lavender blob opacity-50 animate-float" />
+        <div className="absolute bottom-10 -left-10 w-60 h-60 bg-mint blob-2 opacity-40 animate-wobble" />
+
+        <div className="relative max-w-6xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+            className="mb-16 md:mb-20"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <Layers className="w-5 h-5 text-primary" />
+              <span className="text-xs font-body uppercase tracking-[0.3em] text-foreground/60">
+                {t("services.badge")}
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-display font-light tracking-tight mb-6">
+              {t("services.title")}<span className="italic text-gradient">.</span>
+            </h2>
+            <p className="text-lg text-foreground/70 max-w-xl font-body leading-relaxed">
+              {t("services.subtitle")}
+            </p>
+          </motion.div>
+
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { num: "01", cat: t("services.s1.cat"), title: t("services.s1.title"), desc: t("services.s1.desc"), tags: [t("services.s1.d1"), t("services.s1.d2"), t("services.s1.d3")] },
+              { num: "02", cat: t("services.s2.cat"), title: t("services.s2.title"), desc: t("services.s2.desc"), tags: [t("services.s2.d1"), t("services.s2.d2"), t("services.s2.d3")] },
+              { num: "03", cat: t("services.s3.cat"), title: t("services.s3.title"), desc: t("services.s3.desc"), tags: [t("services.s3.d1"), t("services.s3.d2"), t("services.s3.d3")] },
+            ].map((s) => (
+              <StaggerItem key={s.num}>
+                <div className="bg-card rounded-3xl p-8 md:p-10 h-full border border-border/40 shadow-xl shadow-foreground/5 hover:-translate-y-1 transition-transform duration-500">
+                  <span className="text-5xl font-display font-light text-foreground/15 leading-none block mb-4" dir="ltr">{s.num}</span>
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-primary font-body mb-3 block">{s.cat}</span>
+                  <h3 className="text-2xl md:text-3xl font-display font-medium mb-4">{s.title}</h3>
+                  <p className="text-sm text-foreground/70 font-body leading-relaxed mb-6">{s.desc}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {s.tags.map((tg) => (
+                      <span key={tg} className="text-[10px] uppercase tracking-[0.15em] text-foreground/60 bg-background/60 rounded-full px-3 py-1 font-body">
+                        {tg}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerChildren>
+        </div>
+      </section>
+
+      {/* ============== PROCESS — cream ============== */}
+      <section id="process" className="relative bg-cream py-28 md:py-40 overflow-hidden">
+        <div className="absolute top-1/4 -right-20 w-80 h-80 bg-butter blob opacity-50 animate-float" />
+        <div className="absolute bottom-1/4 -left-20 w-72 h-72 bg-peach-soft blob-2 opacity-60 animate-wobble" />
+
+        <div className="relative max-w-6xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+            className="mb-16 md:mb-20"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <Compass className="w-5 h-5 text-primary" />
+              <span className="text-xs font-body uppercase tracking-[0.3em] text-foreground/60">
+                {t("process.badge")}
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-display font-light tracking-tight">
+              {t("process.title1")} <span className="italic text-gradient">{t("process.title2")}</span>
+            </h2>
+            <p className="text-lg text-foreground/70 max-w-xl font-body leading-relaxed mt-6">
+              {t("process.subtitle")}
+            </p>
+          </motion.div>
+
+          <StaggerChildren className="space-y-6">
+            {[
+              { num: "01", percent: 25, title: t("process.p1.title"), desc: t("process.p1.desc"), tags: [t("process.p1.d1"), t("process.p1.d2"), t("process.p1.d3")] },
+              { num: "02", percent: 75, title: t("process.p2.title"), desc: t("process.p2.desc"), tags: [t("process.p2.d1"), t("process.p2.d2"), t("process.p2.d3")] },
+              { num: "03", percent: 100, title: t("process.p3.title"), desc: t("process.p3.desc"), tags: [t("process.p3.d1"), t("process.p3.d2"), t("process.p3.d3")] },
+            ].map((p) => (
+              <StaggerItem key={p.num}>
+                <div className="bg-card rounded-3xl p-8 md:p-12 border border-border/40 shadow-xl shadow-foreground/5 hover:-translate-y-1 transition-transform duration-500">
+                  <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-16">
+                    <div className="md:w-40 shrink-0">
+                      <span className="text-6xl md:text-7xl font-display font-light text-gradient" dir="ltr">{p.num}</span>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-2xl md:text-3xl font-display font-medium mb-3">{p.title}</h3>
+                      <AnimatedProgress value={p.percent} className="mb-5 max-w-xs" />
+                      <p className="text-sm text-foreground/70 font-body leading-relaxed mb-6">{p.desc}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {p.tags.map((tg) => (
+                          <span key={tg} className="text-[10px] uppercase tracking-[0.15em] text-foreground/60 bg-background rounded-full px-3 py-1 font-body border border-border/40">
+                            {tg}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerChildren>
+        </div>
+      </section>
+
+      {/* ============== ABOUT — mint soft ============== */}
+      <section id="about" className="relative bg-mint-soft py-28 md:py-40 overflow-hidden">
+        <div className="absolute -top-10 left-1/4 w-72 h-72 bg-mint blob opacity-50 animate-float" />
+        <div className="absolute bottom-10 -right-10 w-60 h-60 bg-lavender blob-2 opacity-40 animate-wobble" />
+
+        <div className="relative max-w-6xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+            className="mb-16 md:mb-20"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <Heart className="w-5 h-5 text-primary" />
+              <span className="text-xs font-body uppercase tracking-[0.3em] text-foreground/60">
+                {t("about.badge")}
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-display font-light tracking-tight mb-6">
+              {t("about.title1")} <span className="italic text-gradient">{t("about.title2")}</span>
+            </h2>
+            <p className="text-lg text-foreground/70 max-w-xl font-body leading-relaxed">
+              {t("about.subtitle")}
+            </p>
+          </motion.div>
+
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              { label: t("about.c1.label"), title: t("about.c1.title"), content: t("about.c1.content") },
+              { label: t("about.c2.label"), title: t("about.c2.title"), content: t("about.c2.content") },
+              { label: t("about.c3.label"), title: t("about.c3.title"), content: t("about.c3.content") },
+              { label: t("about.c4.label"), title: t("about.c4.title"), content: t("about.c4.content") },
+            ].map((c) => (
+              <StaggerItem key={c.label}>
+                <div className="bg-card rounded-3xl p-8 md:p-10 h-full border border-border/40 shadow-xl shadow-foreground/5 hover:-translate-y-1 transition-transform duration-500">
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-primary font-body mb-4 block">{c.label}</span>
+                  <h3 className="text-xl md:text-2xl font-display font-medium mb-4">{c.title}</h3>
+                  <p className="text-foreground/70 text-sm leading-relaxed font-body">{c.content}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerChildren>
+        </div>
+      </section>
+
+      {/* ============== PRICING — butter soft ============== */}
+      <section id="pricing" className="relative bg-butter-soft py-28 md:py-40 overflow-hidden">
+        <div className="absolute top-1/3 -left-20 w-80 h-80 bg-butter blob opacity-50 animate-float" />
+        <div className="absolute bottom-10 right-10 w-56 h-56 bg-peach blob-2 opacity-40 animate-wobble" />
+
+        <div className="relative max-w-6xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+            className="mb-16 md:mb-20"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <Rocket className="w-5 h-5 text-primary" />
+              <span className="text-xs font-body uppercase tracking-[0.3em] text-foreground/60">
+                {t("pricing.badge")}
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-display font-light tracking-tight">
+              {t("pricing.title1")} <span className="italic text-gradient">{t("pricing.title2")}</span>
+            </h2>
+            <p className="text-lg text-foreground/70 max-w-xl font-body leading-relaxed mt-6">
+              {t("pricing.subtitle")}
+            </p>
+          </motion.div>
+
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                tier: t("pricing.starter"), title: t("pricing.starterTitle"), price: "$350",
+                desc: t("pricing.starterDesc"), delivery: "3–5 days", popular: false,
+                features: [t("pricing.f.customResponsive"), t("pricing.f.upTo4"), t("pricing.f.contactForm"), t("pricing.f.basicSeo"), t("pricing.f.mobileFriendly"), t("pricing.f.1revision")],
+              },
+              {
+                tier: t("pricing.professional"), title: t("pricing.professionalTitle"), price: "$900",
+                desc: t("pricing.professionalDesc"), delivery: "1–2 weeks", popular: true,
+                features: [t("pricing.f.upTo8"), t("pricing.f.advancedAnim"), t("pricing.f.cmsInteg"), t("pricing.f.perfOpt"), t("pricing.f.analytics"), t("pricing.f.3revisions"), t("pricing.f.prioritySupport")],
+              },
+              {
+                tier: t("pricing.enterprise"), title: t("pricing.enterpriseTitle"), price: "$2,500",
+                desc: t("pricing.enterpriseDesc"), delivery: "4–8 weeks", popular: false,
+                features: [t("pricing.f.customApp"), t("pricing.f.backendDb"), t("pricing.f.userAuth"), t("pricing.f.adminDash"), t("pricing.f.apiInteg"), t("pricing.f.scalableArch"), t("pricing.f.ongoingSupport"), t("pricing.f.unlimitedRev")],
+              },
+            ].map((pkg) => (
+              <StaggerItem key={pkg.tier}>
+                <div className={`relative bg-card rounded-3xl p-8 md:p-10 h-full flex flex-col border shadow-xl shadow-foreground/5 hover:-translate-y-1 transition-transform duration-500 ${pkg.popular ? "border-primary/50" : "border-border/40"}`}>
+                  {pkg.popular && (
+                    <div className="absolute -top-3 left-8 px-4 py-1 bg-primary text-primary-foreground text-[10px] uppercase tracking-[0.2em] font-body font-semibold rounded-full">
+                      {t("pricing.mostPopular")}
+                    </div>
+                  )}
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-primary font-body mb-3 block">{pkg.tier}</span>
+                  <h3 className="text-2xl font-display font-medium mb-2">{pkg.title}</h3>
+                  <div className="flex items-baseline gap-1 mb-4">
+                    <span className="text-5xl font-display font-light text-gradient" dir="ltr">{pkg.price}</span>
+                    <span className="text-sm text-foreground/60 font-body">+</span>
+                  </div>
+                  <p className="text-sm text-foreground/70 font-body leading-relaxed mb-6">{pkg.desc}</p>
+                  <ul className="space-y-3 mb-6 flex-1">
+                    {pkg.features.map((f) => (
+                      <li key={f} className="flex items-start gap-3 text-sm font-body">
+                        <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                        <span className="text-foreground/70">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="text-xs text-foreground/60 font-body mb-5">
+                    {t("pricing.delivery")} <span className="text-foreground">{pkg.delivery}</span>
+                  </div>
+                  <Button asChild className={`w-full rounded-full gap-2 group ${pkg.popular ? "bg-foreground text-background hover:bg-foreground/90" : "bg-background border border-border/60 text-foreground hover:bg-background/80"}`}>
+                    <Link to={`/contact?package=${encodeURIComponent(pkg.title)}&price=${encodeURIComponent(pkg.price)}`}>
+                      {t("pricing.getQuote")}
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
+                    </Link>
+                  </Button>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerChildren>
+        </div>
+      </section>
+
       {/* ============== Stats — cream ============== */}
       <section className="relative bg-cream py-28 md:py-36 overflow-hidden">
         <div className="absolute -top-10 left-1/4 w-56 h-56 bg-mint-soft blob opacity-70 animate-float" />
