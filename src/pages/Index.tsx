@@ -11,12 +11,10 @@ import {
   Mail,
   MapPin,
   ExternalLink,
-  Code,
   Zap,
   Users,
   Globe,
 } from "lucide-react";
-import { Marquee } from "@/components/Marquee";
 import { Reveal } from "@/components/RevealText";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -31,15 +29,14 @@ const Index = () => {
   const { t, lang } = useLanguage();
   const isHe = lang === "he";
 
-  // Parallax for hero
+  // Subtle hero parallax
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: heroProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
-  const heroY = useTransform(heroProgress, [0, 1], [0, 200]);
-  const heroOpacity = useTransform(heroProgress, [0, 1], [1, 0]);
-  const heroScale = useTransform(heroProgress, [0, 1], [1, 0.85]);
+  const heroY = useTransform(heroProgress, [0, 1], [0, 80]);
+  const heroOpacity = useTransform(heroProgress, [0, 1], [1, 0.2]);
 
   // ---- Data ----
   const stats = [
@@ -84,7 +81,12 @@ const Index = () => {
       title: t("pricing.starterTitle"),
       price: "$350",
       description: t("pricing.starterDesc"),
-      features: [t("pricing.f.customResponsive"), t("pricing.f.upTo4"), t("pricing.f.contactForm"), t("pricing.f.basicSeo")],
+      features: [
+        t("pricing.f.customResponsive"),
+        t("pricing.f.upTo4"),
+        t("pricing.f.contactForm"),
+        t("pricing.f.basicSeo"),
+      ],
       delivery: "3–5 days",
       popular: false,
     },
@@ -93,7 +95,13 @@ const Index = () => {
       title: t("pricing.professionalTitle"),
       price: "$900",
       description: t("pricing.professionalDesc"),
-      features: [t("pricing.f.upTo8"), t("pricing.f.advancedAnim"), t("pricing.f.cmsInteg"), t("pricing.f.perfOpt"), t("pricing.f.prioritySupport")],
+      features: [
+        t("pricing.f.upTo8"),
+        t("pricing.f.advancedAnim"),
+        t("pricing.f.cmsInteg"),
+        t("pricing.f.perfOpt"),
+        t("pricing.f.prioritySupport"),
+      ],
       delivery: "1–2 weeks",
       popular: true,
     },
@@ -102,7 +110,13 @@ const Index = () => {
       title: t("pricing.enterpriseTitle"),
       price: "$2,500",
       description: t("pricing.enterpriseDesc"),
-      features: [t("pricing.f.customApp"), t("pricing.f.backendDb"), t("pricing.f.userAuth"), t("pricing.f.adminDash"), t("pricing.f.ongoingSupport")],
+      features: [
+        t("pricing.f.customApp"),
+        t("pricing.f.backendDb"),
+        t("pricing.f.userAuth"),
+        t("pricing.f.adminDash"),
+        t("pricing.f.ongoingSupport"),
+      ],
       delivery: "4–8 weeks",
       popular: false,
     },
@@ -147,68 +161,78 @@ const Index = () => {
     }
   };
 
+  // Section header (reusable)
+  const SectionLabel = ({ children }: { children: React.ReactNode }) => (
+    <div className="flex items-center gap-3 mb-8">
+      <div className="w-8 h-px bg-primary/60" />
+      <span className="text-[10px] font-body uppercase tracking-[0.35em] text-muted-foreground">
+        {children}
+      </span>
+    </div>
+  );
+
   return (
     <main className="min-h-screen overflow-x-hidden">
       {/* ===================== HERO ===================== */}
       <section
         id="home"
         ref={heroRef}
-        className="relative min-h-screen flex flex-col justify-center px-6 pt-28 md:pt-32"
+        className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 pt-32"
       >
         <motion.div
-          style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
-          className="max-w-7xl mx-auto w-full relative z-10"
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="max-w-5xl mx-auto w-full relative z-10"
         >
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="mb-8"
+            className="mb-10"
           >
             <img
               src={siterixIcon}
               alt="Siterix Studios"
-              className="w-14 h-14 md:w-16 md:h-16 object-contain drop-shadow-[0_0_30px_hsl(var(--primary)/0.3)]"
+              className="w-12 h-12 object-contain opacity-90"
             />
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
-            className="flex items-center gap-3 mb-6"
           >
-            <div className="section-line" />
-            <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">
-              {t("home.badge")}
-            </span>
+            <SectionLabel>{t("home.badge")}</SectionLabel>
           </motion.div>
 
-          <h1 className="text-[14vw] md:text-[10vw] lg:text-[9vw] font-display font-black tracking-[-0.04em] leading-[0.85] mb-8">
-            <Reveal delay={0.35}>{t("home.hero1")}</Reveal>
-            <br />
-            <Reveal delay={0.5} className="text-gradient italic">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-display font-medium tracking-[-0.02em] leading-[1.02] mb-10 max-w-4xl">
+            <Reveal delay={0.35}>{t("home.hero1")}</Reveal>{" "}
+            <Reveal delay={0.45} className="text-gradient italic font-semibold">
               {t("home.hero2")}
             </Reveal>
           </h1>
 
           <motion.div
-            className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 max-w-5xl"
-            initial={{ opacity: 0, y: 20 }}
+            className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 max-w-4xl"
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
+            transition={{ delay: 0.85, duration: 0.6 }}
           >
             <p className="text-base md:text-lg text-muted-foreground max-w-md leading-relaxed font-body">
               {t("home.subtitle")}
             </p>
             <div className="flex gap-3 flex-wrap">
-              <Button asChild size="lg" className="rounded-full px-7 gap-3 group">
+              <Button asChild size="lg" className="rounded-full px-7 gap-2 group">
                 <a href="#contact">
                   {t("nav.startProject")}
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
                 </a>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full px-7 gap-3 group">
+              <Button
+                asChild
+                variant="ghost"
+                size="lg"
+                className="rounded-full px-7 gap-2 group hover:bg-secondary/40"
+              >
                 <a href="#work">
                   {t("home.cta")}
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl-flip" />
@@ -218,57 +242,38 @@ const Index = () => {
           </motion.div>
         </motion.div>
 
-        {/* Scroll indicator */}
+        {/* Subtle scroll indicator */}
         <motion.div
           dir="ltr"
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground"
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-muted-foreground/60"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4, duration: 0.6 }}
         >
           <span className="text-[10px] uppercase tracking-[0.4em] font-body">Scroll</span>
           <motion.div
-            className="w-px h-12 bg-gradient-to-b from-primary to-transparent"
-            animate={{ scaleY: [0.4, 1, 0.4] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            className="w-px h-10 bg-gradient-to-b from-muted-foreground/40 to-transparent"
+            animate={{ scaleY: [0.3, 1, 0.3] }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
             style={{ originY: 0 }}
           />
         </motion.div>
       </section>
 
-      {/* ===================== KINETIC MARQUEE ===================== */}
-      <section className="py-10 md:py-14 border-y border-border/30 bg-card/20">
-        <Marquee duration={28}>
-          {Array.from({ length: 6 }).map((_, i) => (
-            <span
-              key={i}
-              className="text-5xl md:text-7xl font-display font-black italic tracking-tight px-8 inline-flex items-center gap-8"
-            >
-              DESIGN
-              <span className="text-primary">●</span>
-              DEVELOP
-              <span className="text-primary">●</span>
-              DEPLOY
-              <span className="text-primary">●</span>
-            </span>
-          ))}
-        </Marquee>
-      </section>
-
       {/* ===================== STATS ===================== */}
-      <section className="px-6 py-24 md:py-32">
-        <div className="max-w-7xl mx-auto grid grid-cols-3 gap-px border border-border/40 rounded-2xl overflow-hidden">
+      <section className="px-6 md:px-12 py-24 md:py-32">
+        <div className="max-w-5xl mx-auto grid grid-cols-3 gap-8 md:gap-16 border-t border-border/40 pt-16">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              className="bg-card/60 p-8 md:p-12 text-center"
-              initial={{ opacity: 0, y: 30 }}
+              className="text-center md:text-left"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
             >
               <div
-                className="text-4xl md:text-6xl font-display font-black text-gradient mb-2"
+                className="text-3xl md:text-5xl font-display font-medium text-foreground mb-3"
                 dir="ltr"
               >
                 {stat.value}
@@ -282,55 +287,52 @@ const Index = () => {
       </section>
 
       {/* ===================== SERVICES ===================== */}
-      <section id="services" className="px-6 py-24 md:py-32 relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16 md:mb-24">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="section-line" />
-              <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">
-                {t("services.badge")}
-              </span>
-            </div>
-            <h2 className="text-6xl md:text-8xl font-display font-black tracking-[-0.03em]">
+      <section id="services" className="px-6 md:px-12 py-24 md:py-32">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-20">
+            <SectionLabel>{t("services.badge")}</SectionLabel>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium tracking-[-0.02em] leading-[1.05] max-w-2xl">
               <Reveal>{t("services.title")}</Reveal>
-              <span className="text-gradient">.</span>
+              <span className="text-primary">.</span>
             </h2>
-            <p className="mt-6 text-lg text-muted-foreground font-body max-w-xl">
+            <p className="mt-6 text-base text-muted-foreground font-body max-w-lg leading-relaxed">
               {t("services.subtitle")}
             </p>
           </div>
 
-          <div className="space-y-px border border-border/40 rounded-2xl overflow-hidden">
+          <div className="divide-y divide-border/40 border-t border-b border-border/40">
             {services.map((s, i) => (
               <motion.div
                 key={s.number}
-                className="bg-card/60 p-10 md:p-14 group hover:bg-card transition-colors duration-500"
-                initial={{ opacity: 0, x: -40 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                className="py-10 md:py-14 group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-16">
-                  <div className="flex md:flex-col items-center md:items-start gap-4 md:w-56 shrink-0">
-                    <span className="text-5xl md:text-7xl font-display font-black text-gradient">
+                <div className="grid md:grid-cols-12 gap-6 md:gap-12 items-start">
+                  <div className="md:col-span-2 flex md:flex-col items-center md:items-start gap-3">
+                    <span className="text-sm font-body text-muted-foreground tracking-[0.2em]">
                       {s.number}
                     </span>
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-body">
+                    <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground/60 font-body">
                       {s.category}
                     </span>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-3xl md:text-4xl font-display font-bold mb-4 transition-colors group-hover:text-gradient">
+                  <div className="md:col-span-5">
+                    <h3 className="text-2xl md:text-3xl font-display font-medium tracking-tight transition-colors group-hover:text-primary">
                       {s.title}
                     </h3>
-                    <p className="text-muted-foreground text-base leading-relaxed font-body mb-6 max-w-2xl">
+                  </div>
+                  <div className="md:col-span-5">
+                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed font-body mb-5">
                       {s.description}
                     </p>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-2">
                       {s.details.map((d) => (
                         <span
                           key={d}
-                          className="text-[10px] uppercase tracking-[0.2em] text-primary/80 border border-primary/25 rounded-full px-3 py-1.5 font-body"
+                          className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/80 border border-border/60 rounded-full px-3 py-1 font-body"
                         >
                           {d}
                         </span>
@@ -344,50 +346,30 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ===================== KINETIC SUB-MARQUEE (reverse) ===================== */}
-      <section className="py-6 border-y border-border/30 bg-primary/5 overflow-hidden">
-        <Marquee duration={36} reverse>
-          {Array.from({ length: 8 }).map((_, i) => (
-            <span
-              key={i}
-              className="text-2xl md:text-3xl font-body uppercase tracking-[0.3em] text-primary/70 px-8 inline-flex items-center gap-8"
-            >
-              · React · TypeScript · Tailwind · Supabase · Framer Motion
-            </span>
-          ))}
-        </Marquee>
-      </section>
-
       {/* ===================== WORK / CASE STUDY ===================== */}
-      <section id="work" className="px-6 py-24 md:py-32">
-        <div className="max-w-7xl mx-auto">
+      <section id="work" className="px-6 md:px-12 py-24 md:py-32">
+        <div className="max-w-5xl mx-auto">
           <div className="mb-16">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="section-line" />
-              <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">
-                {isHe ? "מקרה בוחן" : "Case Study"}
-              </span>
-            </div>
-            <h2 className="text-6xl md:text-8xl font-display font-black tracking-[-0.03em] leading-[0.9]">
-              <Reveal>{isHe ? "יוגה" : "Yoga"}</Reveal>
-              <br />
-              <Reveal delay={0.1} className="text-gradient italic">
-                {isHe ? "במושבה." : "BaMoshava."}
+            <SectionLabel>{isHe ? "מקרה בוחן" : "Case Study"}</SectionLabel>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium tracking-[-0.02em] leading-[1.05]">
+              <Reveal>{isHe ? "יוגה" : "Yoga"}</Reveal>{" "}
+              <Reveal delay={0.1} className="text-gradient italic font-semibold">
+                {isHe ? "במושבה" : "BaMoshava"}
               </Reveal>
             </h2>
           </div>
 
           <motion.div
-            className="rounded-2xl overflow-hidden mb-12 border border-border/40"
-            initial={{ opacity: 0, y: 60 }}
+            className="rounded-xl overflow-hidden mb-14 border border-border/40"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             <img src={mockupImg} alt="Yoga BaMoshava" className="w-full" />
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6 mb-10">
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
             {[
               { icon: Users, text: isHe ? "עלייה משמעותית בפניות" : "Significant lift in inquiries" },
               { icon: Zap, text: isHe ? "טעינה מתחת לשנייה" : "Sub-second load time" },
@@ -395,14 +377,16 @@ const Index = () => {
             ].map((r, i) => (
               <motion.div
                 key={i}
-                className="glass-card p-6 flex items-center gap-4"
-                initial={{ opacity: 0, y: 30 }}
+                className="flex items-center gap-3 py-5 border-t border-border/40"
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
               >
-                <r.icon className="w-6 h-6 text-primary shrink-0" />
-                <span className="text-sm font-body text-foreground leading-relaxed">{r.text}</span>
+                <r.icon className="w-4 h-4 text-primary shrink-0" />
+                <span className="text-sm font-body text-muted-foreground leading-relaxed">
+                  {r.text}
+                </span>
               </motion.div>
             ))}
           </div>
@@ -429,43 +413,35 @@ const Index = () => {
       </section>
 
       {/* ===================== PROCESS ===================== */}
-      <section id="process" className="px-6 py-24 md:py-32 bg-card/20 border-y border-border/30">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16 md:mb-24">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="section-line" />
-              <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">
-                {t("process.badge")}
-              </span>
-            </div>
-            <h2 className="text-6xl md:text-8xl font-display font-black tracking-[-0.03em] leading-[0.9]">
+      <section id="process" className="px-6 md:px-12 py-24 md:py-32">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-20">
+            <SectionLabel>{t("process.badge")}</SectionLabel>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium tracking-[-0.02em] leading-[1.05]">
               <Reveal>{t("process.title1")}</Reveal>{" "}
-              <Reveal delay={0.1} className="text-gradient italic">
+              <Reveal delay={0.1} className="text-gradient italic font-semibold">
                 {t("process.title2")}
               </Reveal>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-px bg-border/40 border border-border/40 rounded-xl overflow-hidden">
             {phases.map((p, i) => (
               <motion.div
                 key={p.number}
-                className="glass-card p-8 md:p-10 relative overflow-hidden group"
-                initial={{ opacity: 0, y: 60 }}
+                className="bg-background p-8 md:p-10 group hover:bg-card/40 transition-colors duration-500"
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: i * 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: i * 0.12, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="absolute -top-4 -right-2 text-[8rem] font-display font-black text-primary/5 leading-none pointer-events-none select-none">
-                  {p.number}
-                </div>
-                <span className="relative text-xs font-body text-primary tracking-[0.3em] block mb-4">
-                  STEP {p.number}
+                <span className="text-[10px] font-body text-muted-foreground tracking-[0.3em] block mb-6">
+                  STEP / {p.number}
                 </span>
-                <h3 className="relative text-2xl md:text-3xl font-display font-bold mb-4 group-hover:text-gradient transition-colors">
+                <h3 className="text-xl md:text-2xl font-display font-medium mb-4 group-hover:text-primary transition-colors">
                   {p.title}
                 </h3>
-                <p className="relative text-sm text-muted-foreground font-body leading-relaxed">
+                <p className="text-sm text-muted-foreground font-body leading-relaxed">
                   {p.description}
                 </p>
               </motion.div>
@@ -475,74 +451,65 @@ const Index = () => {
       </section>
 
       {/* ===================== PRICING ===================== */}
-      <section id="pricing" className="px-6 py-24 md:py-32">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16 md:mb-24">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="section-line" />
-              <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">
-                {t("pricing.badge")}
-              </span>
-            </div>
-            <h2 className="text-6xl md:text-8xl font-display font-black tracking-[-0.03em] leading-[0.9]">
-              <Reveal>{t("pricing.title1")}</Reveal>
-              <br />
-              <Reveal delay={0.1} className="text-gradient italic">
+      <section id="pricing" className="px-6 md:px-12 py-24 md:py-32">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-20">
+            <SectionLabel>{t("pricing.badge")}</SectionLabel>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium tracking-[-0.02em] leading-[1.05]">
+              <Reveal>{t("pricing.title1")}</Reveal>{" "}
+              <Reveal delay={0.1} className="text-gradient italic font-semibold">
                 {t("pricing.title2")}
               </Reveal>
             </h2>
-            <p className="mt-6 text-lg text-muted-foreground font-body max-w-xl">
+            <p className="mt-6 text-base text-muted-foreground font-body max-w-lg leading-relaxed">
               {t("pricing.subtitle")}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="grid md:grid-cols-3 gap-px bg-border/40 border border-border/40 rounded-xl overflow-hidden mb-10">
             {packages.map((pkg, i) => (
               <motion.div
                 key={pkg.tier}
-                className={`glass-card p-8 md:p-10 flex flex-col h-full relative ${
-                  pkg.popular ? "border-primary/40 md:-translate-y-3" : ""
+                className={`bg-background p-8 md:p-10 flex flex-col h-full relative ${
+                  pkg.popular ? "bg-card/40" : ""
                 }`}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: pkg.popular ? -12 : 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.1, duration: 0.6 }}
               >
                 {pkg.popular && (
-                  <div className="absolute -top-3 left-8 px-4 py-1 bg-primary text-primary-foreground text-[10px] uppercase tracking-[0.2em] font-body font-semibold rounded-full">
+                  <div className="absolute top-4 right-4 px-3 py-0.5 bg-primary/10 text-primary text-[9px] uppercase tracking-[0.2em] font-body font-medium rounded-full">
                     {t("pricing.mostPopular")}
                   </div>
                 )}
-                <span className="text-[10px] uppercase tracking-[0.3em] text-primary font-body mb-4 block">
+                <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-body mb-4 block">
                   {pkg.tier}
                 </span>
-                <h3 className="text-2xl font-display font-bold mb-2">{pkg.title}</h3>
-                <div className="flex items-baseline gap-1 mb-4" dir="ltr">
-                  <span className="text-5xl font-display font-black text-gradient">{pkg.price}</span>
+                <h3 className="text-xl font-display font-medium mb-3">{pkg.title}</h3>
+                <div className="flex items-baseline gap-1 mb-5" dir="ltr">
+                  <span className="text-3xl font-display font-medium">{pkg.price}</span>
                   <span className="text-sm text-muted-foreground font-body">+</span>
                 </div>
                 <p className="text-sm text-muted-foreground font-body leading-relaxed mb-8">
                   {pkg.description}
                 </p>
-                <ul className="space-y-3 mb-8 flex-1">
+                <ul className="space-y-2.5 mb-8 flex-1">
                   {pkg.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-sm font-body">
-                      <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                    <li key={f} className="flex items-start gap-2.5 text-sm font-body">
+                      <Check className="w-3.5 h-3.5 text-primary shrink-0 mt-1" />
                       <span className="text-muted-foreground">{f}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="text-xs text-muted-foreground font-body mb-6">
+                <div className="text-[11px] text-muted-foreground/80 font-body mb-5 tracking-wide">
                   {t("pricing.delivery")}{" "}
                   <span className="text-foreground">{pkg.delivery}</span>
                 </div>
                 <Button
                   asChild
-                  className={`w-full rounded-full gap-2 group ${
-                    pkg.popular
-                      ? ""
-                      : "bg-secondary/50 border border-border/50 text-foreground hover:bg-secondary"
-                  }`}
+                  variant={pkg.popular ? "default" : "outline"}
+                  className="w-full rounded-full gap-2 group"
                 >
                   <a
                     href={`/contact?package=${encodeURIComponent(pkg.title)}&price=${encodeURIComponent(pkg.price)}`}
@@ -556,18 +523,15 @@ const Index = () => {
           </div>
 
           <motion.div
-            className="glass-card p-8 md:p-10 text-center"
-            initial={{ opacity: 0, y: 30 }}
+            className="text-center pt-8 border-t border-border/40"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl md:text-3xl font-display font-bold mb-3">
-              {t("pricing.notSure")}
-            </h3>
-            <p className="text-muted-foreground font-body mb-6 max-w-md mx-auto">
+            <p className="text-sm text-muted-foreground font-body mb-5">
               {t("pricing.notSureDesc")}
             </p>
-            <Button asChild size="lg" className="rounded-full px-8 gap-2 group">
+            <Button asChild variant="ghost" className="rounded-full px-6 gap-2 group">
               <Link to="/quiz">
                 {t("pricing.takeQuiz")}
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
@@ -578,38 +542,31 @@ const Index = () => {
       </section>
 
       {/* ===================== ABOUT ===================== */}
-      <section id="about" className="px-6 py-24 md:py-32 bg-card/20 border-y border-border/30">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16 md:mb-24">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="section-line" />
-              <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">
-                {t("about.badge")}
-              </span>
-            </div>
-            <h2 className="text-6xl md:text-8xl font-display font-black tracking-[-0.03em] leading-[0.9]">
-              <Reveal>{t("about.title1")}</Reveal>
-              <br />
-              <Reveal delay={0.1} className="text-gradient italic">
+      <section id="about" className="px-6 md:px-12 py-24 md:py-32">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-20">
+            <SectionLabel>{t("about.badge")}</SectionLabel>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium tracking-[-0.02em] leading-[1.05]">
+              <Reveal>{t("about.title1")}</Reveal>{" "}
+              <Reveal delay={0.1} className="text-gradient italic font-semibold">
                 {t("about.title2")}
               </Reveal>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px border border-border/40 rounded-2xl overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 border-t border-border/40 pt-12">
             {aboutCards.map((c, i) => (
               <motion.div
                 key={c.label}
-                className="bg-card/60 p-10 md:p-12 group hover:bg-card transition-colors duration-500"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.08 }}
               >
-                <span className="text-[10px] uppercase tracking-[0.3em] text-primary font-body mb-4 block">
+                <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-body mb-4 block">
                   {c.label}
                 </span>
-                <h3 className="text-2xl font-display font-bold mb-4">{c.title}</h3>
+                <h3 className="text-xl font-display font-medium mb-3">{c.title}</h3>
                 <p className="text-muted-foreground text-sm font-body leading-relaxed">
                   {c.content}
                 </p>
@@ -620,31 +577,24 @@ const Index = () => {
       </section>
 
       {/* ===================== CONTACT ===================== */}
-      <section id="contact" className="px-6 py-24 md:py-32">
-        <div className="max-w-3xl mx-auto">
-          <div className="mb-12 text-center">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="section-line" />
-              <span className="text-xs font-body uppercase tracking-[0.3em] text-muted-foreground">
-                {t("contact.badge")}
-              </span>
-              <div className="section-line" />
-            </div>
-            <h2 className="text-6xl md:text-8xl font-display font-black tracking-[-0.03em] leading-[0.9]">
-              <Reveal>{t("contact.title1")}</Reveal>
-              <br />
-              <Reveal delay={0.1} className="text-gradient italic">
+      <section id="contact" className="px-6 md:px-12 py-24 md:py-32">
+        <div className="max-w-2xl mx-auto">
+          <div className="mb-12">
+            <SectionLabel>{t("contact.badge")}</SectionLabel>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium tracking-[-0.02em] leading-[1.05]">
+              <Reveal>{t("contact.title1")}</Reveal>{" "}
+              <Reveal delay={0.1} className="text-gradient italic font-semibold">
                 {t("contact.title2")}
               </Reveal>
             </h2>
-            <p className="mt-6 text-base md:text-lg text-muted-foreground font-body">
+            <p className="mt-6 text-base text-muted-foreground font-body leading-relaxed">
               {t("contact.subtitle")}
             </p>
           </div>
 
           <motion.form
-            className="glass-card p-8 md:p-10 space-y-6"
-            initial={{ opacity: 0, y: 30 }}
+            className="space-y-6 border-t border-border/40 pt-10"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
@@ -652,45 +602,45 @@ const Index = () => {
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-xs uppercase tracking-[0.15em] font-body">
+                <Label htmlFor="name" className="text-[10px] uppercase tracking-[0.2em] font-body text-muted-foreground">
                   {t("contact.name")}
                 </Label>
                 <Input
                   id="name"
                   placeholder={t("contact.namePh")}
-                  className="bg-secondary/50 border-border/50 font-body"
+                  className="bg-transparent border-0 border-b border-border/60 rounded-none px-0 font-body focus-visible:ring-0 focus-visible:border-primary"
                   disabled={sending}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-xs uppercase tracking-[0.15em] font-body">
+                <Label htmlFor="email" className="text-[10px] uppercase tracking-[0.2em] font-body text-muted-foreground">
                   {t("contact.email")}
                 </Label>
                 <Input
                   id="email"
                   type="email"
                   placeholder={t("contact.emailPh")}
-                  className="bg-secondary/50 border-border/50 font-body"
+                  className="bg-transparent border-0 border-b border-border/60 rounded-none px-0 font-body focus-visible:ring-0 focus-visible:border-primary"
                   disabled={sending}
                 />
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="message" className="text-xs uppercase tracking-[0.15em] font-body">
+              <Label htmlFor="message" className="text-[10px] uppercase tracking-[0.2em] font-body text-muted-foreground">
                 {t("contact.message")}
               </Label>
               <Textarea
                 id="message"
                 placeholder={t("contact.messagePh")}
-                rows={5}
-                className="bg-secondary/50 border-border/50 font-body"
+                rows={4}
+                className="bg-transparent border-0 border-b border-border/60 rounded-none px-0 font-body focus-visible:ring-0 focus-visible:border-primary resize-none"
                 disabled={sending}
               />
             </div>
             <Button
               type="submit"
               size="lg"
-              className="w-full rounded-full font-body gap-2 group"
+              className="rounded-full font-body gap-2 group px-8"
               disabled={sending || sent}
             >
               {sending ? (
@@ -715,36 +665,24 @@ const Index = () => {
       </section>
 
       {/* ===================== FOOTER ===================== */}
-      <footer className="px-6 pt-16 pb-28 border-t border-border/30">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+      <footer className="px-6 md:px-12 pt-20 pb-28 border-t border-border/30 mt-12">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 mb-14">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <img src={siterixIcon} alt="" className="w-10 h-10 object-contain" />
-              <h3 className="text-xl font-display font-bold text-gradient">Siterix Studio</h3>
+              <img src={siterixIcon} alt="" className="w-8 h-8 object-contain" />
+              <h3 className="text-base font-display font-medium">Siterix Studio</h3>
             </div>
             <p className="text-sm text-muted-foreground font-body leading-relaxed max-w-xs">
               {t("home.subtitle")}
             </p>
-            <a
-              href="mailto:siterixstudios@gmail.com"
-              className="inline-flex items-center gap-2 text-sm font-body text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Mail className="w-4 h-4" />
-              siterixstudios@gmail.com
-            </a>
-            <div className="flex items-center gap-2 text-sm font-body text-muted-foreground">
-              <MapPin className="w-4 h-4" />
-              Israel · Worldwide
-            </div>
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-xs font-body uppercase tracking-[0.2em] text-muted-foreground">
+            <h4 className="text-[10px] font-body uppercase tracking-[0.25em] text-muted-foreground">
               Navigation
             </h4>
             <nav className="flex flex-col gap-2.5">
               {[
-                { to: "#home", label: t("nav.home") },
                 { to: "#services", label: t("nav.services") },
                 { to: "#work", label: t("nav.work") },
                 { to: "#process", label: t("nav.process") },
@@ -763,38 +701,36 @@ const Index = () => {
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-xs font-body uppercase tracking-[0.2em] text-muted-foreground">
-              Explore
+            <h4 className="text-[10px] font-body uppercase tracking-[0.25em] text-muted-foreground">
+              Contact
             </h4>
+            <a
+              href="mailto:siterixstudios@gmail.com"
+              className="inline-flex items-center gap-2 text-sm font-body text-muted-foreground hover:text-primary transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              siterixstudios@gmail.com
+            </a>
+            <div className="flex items-center gap-2 text-sm font-body text-muted-foreground">
+              <MapPin className="w-3.5 h-3.5" />
+              Israel · Worldwide
+            </div>
             <Link
               to="/lab"
               className="text-sm font-body text-muted-foreground hover:text-foreground transition-colors block w-fit"
             >
               {t("nav.lab")}
             </Link>
-            <Link
-              to="/quiz"
-              className="text-sm font-body text-muted-foreground hover:text-foreground transition-colors block w-fit"
-            >
-              {t("pricing.takeQuiz")}
-            </Link>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 text-sm font-body font-semibold text-primary hover:text-primary/80 transition-colors group"
-            >
-              {isHe ? "צרו קשר" : "Get in Touch"}
-              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl-flip" />
-            </a>
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto border-t border-border/20 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-muted-foreground font-body tracking-[0.1em]">
-            © {new Date().getFullYear()} Siterix Studio. {t("footer.rights")}
+        <div className="max-w-5xl mx-auto border-t border-border/20 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
+          <p className="text-[11px] text-muted-foreground/70 font-body tracking-[0.1em]">
+            © {new Date().getFullYear()} Siterix Studio.
           </p>
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-xs text-muted-foreground font-body tracking-[0.1em]">
+            <span className="text-[11px] text-muted-foreground/70 font-body tracking-[0.1em]">
               Available for {new Date().getFullYear()}
             </span>
           </div>
