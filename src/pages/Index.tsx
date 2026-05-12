@@ -428,14 +428,29 @@ const Index = () => {
                     <p className="text-base md:text-lg text-foreground/70 font-body leading-relaxed mb-8 max-w-md">
                       {p.description}
                     </p>
-                    {p.href && (
-                      <Button asChild variant="outline" className="rounded-full border-foreground/30 hover:bg-foreground hover:text-background gap-2 group">
-                        <Link to={p.href}>
-                          {isHe ? "צפו בפרויקט" : "View project"}
-                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
-                        </Link>
-                      </Button>
-                    )}
+                    <div className="flex flex-wrap items-center gap-3">
+                      {p.liveUrl ? (
+                        <Button asChild variant="outline" className="rounded-full border-foreground/30 hover:bg-foreground hover:text-background gap-2 group">
+                          <a href={p.liveUrl} target="_blank" rel="noopener noreferrer">
+                            {isHe ? "צפו באתר" : "View Live Site"}
+                            <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                          </a>
+                        </Button>
+                      ) : (
+                        <span className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground/5 px-4 py-2 text-xs font-body uppercase tracking-[0.2em] text-foreground/50">
+                          <Clock className="w-3.5 h-3.5" />
+                          {isHe ? "בקרוב" : "Coming Soon"}
+                        </span>
+                      )}
+                      {p.href && (
+                        <Button asChild variant="ghost" className="rounded-full hover:bg-foreground/10 gap-2 group">
+                          <Link to={p.href}>
+                            {isHe ? "מקרה בוחן" : "Case study"}
+                            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
+                          </Link>
+                        </Button>
+                      )}
+                    </div>
                   </motion.div>
                 </div>
               </div>
