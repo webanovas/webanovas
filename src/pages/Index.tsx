@@ -23,6 +23,19 @@ type Project = {
   bg: string;       // section background tailwind class
   accent: string;   // accent blob color class
   href?: string;
+  liveUrl?: string; // live demo site URL — leave empty to show "Coming Soon"
+};
+
+// ============== LIVE SITE URLs ==============
+// Paste your 6 Lovable subdomain URLs here.
+// Leave as empty string to show a "Coming Soon" badge instead.
+const LIVE_URLS = {
+  yoga: "",
+  estates: "",
+  nexus: "",
+  artist: "",
+  restaurant: "",
+  fashion: "",
 };
 
 const Index = () => {
