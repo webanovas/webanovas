@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect } from "react";
-import { ArrowRight, Sparkles, Heart, Zap, Star, Check, Compass, Layers, Rocket } from "lucide-react";
+import { ArrowRight, Sparkles, Heart, Zap, Star, Check, Compass, Layers, Rocket, ExternalLink, Clock } from "lucide-react";
 import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
 import { AnimatedProgress } from "@/components/AnimatedProgress";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -23,6 +23,19 @@ type Project = {
   bg: string;       // section background tailwind class
   accent: string;   // accent blob color class
   href?: string;
+  liveUrl?: string; // live demo site URL — leave empty to show "Coming Soon"
+};
+
+// ============== LIVE SITE URLs ==============
+// Paste your 6 Lovable subdomain URLs here.
+// Leave as empty string to show a "Coming Soon" badge instead.
+const LIVE_URLS = {
+  yoga: "",
+  estates: "",
+  nexus: "",
+  artist: "",
+  restaurant: "",
+  fashion: "",
 };
 
 const Index = () => {
@@ -64,6 +77,8 @@ const Index = () => {
       image: workYoga,
       bg: "bg-peach-soft",
       accent: "bg-peach",
+      href: "/work",
+      liveUrl: LIVE_URLS.yoga,
     },
     {
       title: "Vanguard Estates",
@@ -74,6 +89,7 @@ const Index = () => {
       image: workEstates,
       bg: "bg-mint-soft",
       accent: "bg-mint",
+      liveUrl: LIVE_URLS.estates,
     },
     {
       title: "Nexus AI",
@@ -84,6 +100,7 @@ const Index = () => {
       image: workNexus,
       bg: "bg-lavender-soft",
       accent: "bg-lavender",
+      liveUrl: LIVE_URLS.nexus,
     },
     {
       title: "The Artist Loft",
@@ -94,6 +111,7 @@ const Index = () => {
       image: workArtist,
       bg: "bg-butter-soft",
       accent: "bg-butter",
+      liveUrl: LIVE_URLS.artist,
     },
     {
       title: "Larkmont",
@@ -104,6 +122,7 @@ const Index = () => {
       image: workRestaurant,
       bg: "bg-peach-soft",
       accent: "bg-peach",
+      liveUrl: LIVE_URLS.restaurant,
     },
     {
       title: "Maison Noir",
@@ -114,6 +133,7 @@ const Index = () => {
       image: workFashion,
       bg: "bg-mint-soft",
       accent: "bg-mint",
+      liveUrl: LIVE_URLS.fashion,
     },
   ];
 
@@ -408,14 +428,29 @@ const Index = () => {
                     <p className="text-base md:text-lg text-foreground/70 font-body leading-relaxed mb-8 max-w-md">
                       {p.description}
                     </p>
-                    {p.href && (
-                      <Button asChild variant="outline" className="rounded-full border-foreground/30 hover:bg-foreground hover:text-background gap-2 group">
-                        <Link to={p.href}>
-                          {isHe ? "צפו בפרויקט" : "View project"}
-                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
-                        </Link>
-                      </Button>
-                    )}
+                    <div className="flex flex-wrap items-center gap-3">
+                      {p.liveUrl ? (
+                        <Button asChild variant="outline" className="rounded-full border-foreground/30 hover:bg-foreground hover:text-background gap-2 group">
+                          <a href={p.liveUrl} target="_blank" rel="noopener noreferrer">
+                            {isHe ? "צפו באתר" : "View Live Site"}
+                            <ExternalLink className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                          </a>
+                        </Button>
+                      ) : (
+                        <span className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground/5 px-4 py-2 text-xs font-body uppercase tracking-[0.2em] text-foreground/50">
+                          <Clock className="w-3.5 h-3.5" />
+                          {isHe ? "בקרוב" : "Coming Soon"}
+                        </span>
+                      )}
+                      {p.href && (
+                        <Button asChild variant="ghost" className="rounded-full hover:bg-foreground/10 gap-2 group">
+                          <Link to={p.href}>
+                            {isHe ? "מקרה בוחן" : "Case study"}
+                            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 rtl-flip" />
+                          </Link>
+                        </Button>
+                      )}
+                    </div>
                   </motion.div>
                 </div>
               </div>
