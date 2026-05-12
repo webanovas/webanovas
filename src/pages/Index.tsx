@@ -77,6 +77,8 @@ const Index = () => {
       image: workYoga,
       bg: "bg-peach-soft",
       accent: "bg-peach",
+      href: "/work",
+      liveUrl: LIVE_URLS.yoga,
     },
     {
       title: "Vanguard Estates",
@@ -87,6 +89,7 @@ const Index = () => {
       image: workEstates,
       bg: "bg-mint-soft",
       accent: "bg-mint",
+      liveUrl: LIVE_URLS.estates,
     },
     {
       title: "Nexus AI",
@@ -97,6 +100,7 @@ const Index = () => {
       image: workNexus,
       bg: "bg-lavender-soft",
       accent: "bg-lavender",
+      liveUrl: LIVE_URLS.nexus,
     },
     {
       title: "The Artist Loft",
@@ -107,6 +111,7 @@ const Index = () => {
       image: workArtist,
       bg: "bg-butter-soft",
       accent: "bg-butter",
+      liveUrl: LIVE_URLS.artist,
     },
     {
       title: "Larkmont",
@@ -117,6 +122,7 @@ const Index = () => {
       image: workRestaurant,
       bg: "bg-peach-soft",
       accent: "bg-peach",
+      liveUrl: LIVE_URLS.restaurant,
     },
     {
       title: "Maison Noir",
@@ -127,6 +133,7 @@ const Index = () => {
       image: workFashion,
       bg: "bg-mint-soft",
       accent: "bg-mint",
+      liveUrl: LIVE_URLS.fashion,
     },
   ];
 
