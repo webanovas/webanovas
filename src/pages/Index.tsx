@@ -30,12 +30,12 @@ type Project = {
 // Paste your 6 Lovable subdomain URLs here.
 // Leave as empty string to show a "Coming Soon" badge instead.
 const LIVE_URLS = {
-  yoga: "",
-  estates: "",
-  nexus: "",
-  artist: "",
-  restaurant: "",
-  fashion: "",
+  yoga: "https://yogabamoshava.co.il/siterix",
+  estates: "https://vanguard-dream-homes.lovable.app/siterix",
+  nexus: "https://ai-nexus-analyzer.lovable.app/?ref=siterix",
+  artist: "https://artful-loft-showcase.lovable.app",
+  restaurant: "https://larkmont-eats-bloom.lovable.app/welcome",
+  fashion: "https://maison-noir-flow.lovable.app/credits",
 };
 
 const Index = () => {
